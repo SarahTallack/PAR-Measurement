@@ -1,0 +1,97 @@
+New insights into radiative transfer within sea ice derived from autonomous optical propagation measurements
+@Article{tc-15-183-2021,
+AUTHOR = {Katlein, C. and Valcic, L. and Lambert-Girard, S. and Hoppmann, M.},
+TITLE = {New insights into radiative transfer within sea ice derived from autonomous
+optical propagation measurements},
+JOURNAL = {The Cryosphere},
+VOLUME = {15},
+YEAR = {2021},
+NUMBER = {1},
+PAGES = {183--198},
+URL = {https://tc.copernicus.org/articles/15/183/2021/},
+DOI = {10.5194/tc-15-183-2021}
+}
+
+Southern Ocean Biogeochemical Argo detect under-ice phytoplankton growth before sea ice retreat
+@Article{bg-18-25-2021,
+AUTHOR = {Hague, M. and Vichi, M.},s
+TITLE = {Southern Ocean Biogeochemical Argo  detect under-ice phytoplankton growth before sea ice retreat},
+JOURNAL = {Biogeosciences},
+VOLUME = {18},
+YEAR = {2021},
+NUMBER = {1},
+PAGES = {25--38},
+URL = {https://bg.copernicus.org/articles/18/25/2021/},
+DOI = {10.5194/bg-18-25-2021}
+}
+
+Southern Ocean sea ice and its wider linkages
+@article{parkinson_2004, 
+title={Southern Ocean sea ice and its wider linkages: insights revealed from models and observations}, 
+volume={16}, 
+DOI={10.1017/S0954102004002214}, 
+number={4}, 
+journal={Antarctic Science}, 
+publisher={Cambridge University Press}, 
+author={PARKINSON, CLAIRE L.}, 
+year={2004}, 
+pages={387–400}
+}
+
+Ecological impact of a large Antarctic iceberg
+@article{https://doi.org/10.1029/2001GL014160,
+author = {Arrigo, Kevin R. and van Dijken, Gert L. and Ainley, David G. and Fahnestock, Mark A. and Markus, Thorsten},
+title = {Ecological impact of a large Antarctic iceberg},
+journal = {Geophysical Research Letters},
+volume = {29},
+number = {7},
+pages = {8-1-8-4},
+doi = {https://doi.org/10.1029/2001GL014160},
+url = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2001GL014160},
+eprint = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2001GL014160},
+abstract = {Satellite imagery has been used to document for the first time the potential for large icebergs to substantially alter the dynamics of a marine ecosystem. The B-15 iceberg (∼10,000 km2), which calved off the Ross Ice Shelf in the biologically productive southwestern Ross Sea, Antarctica, restricted the normal drift of pack ice, resulting in heavier spring/summer pack ice cover than previously recorded. Extensive ice cover reduced both the area suitable for phytoplankton growth and the length of the algal growing season. Consequently, primary productivity throughout the region was >40\% below normal, which changed both the abundance and behavior of upper trophic level organisms.},
+year = {2002}
+}
+
+Large scale importance of sea ice biology in the Southern Ocean
+@article{arrigo_thomas_2004, 
+title={Large scale importance of sea ice biology in the Southern Ocean}, 
+volume={16}, 
+DOI={10.1017/S0954102004002263}, 
+number={4}, 
+journal={Antarctic Science}, 
+publisher={Cambridge University Press}, 
+author={ARRIGO, KEVIN R. and THOMAS, DAVID N.}, 
+year={2004}, 
+pages={471–486}
+}
+
+The seasonality of Antarctic sea ice trends
+@article{https://doi.org/10.1002/2014GL060172,
+author = {Holland, Paul R.},
+title = {The seasonality of Antarctic sea ice trends},
+journal = {Geophysical Research Letters},
+volume = {41},
+number = {12},
+pages = {4230-4237},
+keywords = {Antarctica, sea ice},
+doi = {https://doi.org/10.1002/2014GL060172},
+url = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2014GL060172},
+eprint = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2014GL060172},
+abstract = {Abstract Antarctic sea ice is experiencing a weak overall increase in area that is the residual of opposing regional trends. This study considers their seasonal pattern. In addition to traditional ice concentration and total ice area, temporal derivatives of these quantities are investigated (“intensification” and “expansion,” respectively). This is crucial to the attribution of trends, since changes in forcing directly affect ice areal change (rather than ice area). Diverse regional trends all contribute significantly to the overall increase. Trends in the Weddell and Amundsen-Bellingshausen regions compensate in magnitude and seasonality. The largest concentration trends, in autumn, are actually caused by intensification trends during spring. Autumn intensification trends directly oppose autumn concentration trends in most places, seemingly as a result of ice and ocean feedbacks. Springtime trends are reconcilable with wind trends, but further study of changes during the spring melting season is required to unravel the Antarctic sea ice increase.},
+year = {2014}
+}
+
+Southern Ocean Phytoplankton in a Changing Climate
+@ARTICLE{10.3389/fmars.2017.00040,
+AUTHOR={Deppeler, Stacy L. and Davidson, Andrew T.},   
+TITLE={Southern Ocean Phytoplankton in a Changing Climate},      
+JOURNAL={Frontiers in Marine Science},      
+VOLUME={4},           
+YEAR={2017},      
+URL={https://www.frontiersin.org/articles/10.3389/fmars.2017.00040},       
+DOI={10.3389/fmars.2017.00040},      
+ISSN={2296-7745},   
+ABSTRACT={Phytoplankton are the base of the Antarctic food web, sustain the wealth and diversity of life for which Antarctica is renowned, and play a critical role in biogeochemical cycles that mediate global climate. Over the vast expanse of the Southern Ocean (SO), the climate is variously predicted to experience increased warming, strengthening wind, acidification, shallowing mixed layer depths, increased light (and UV), changes in upwelling and nutrient replenishment, declining sea ice, reduced salinity, and the southward migration of ocean fronts. These changes are expected to alter the structure and function of phytoplankton communities in the SO. The diverse environments contained within the vast expanse of the SO will be impacted differently by climate change; causing the identity and the magnitude of environmental factors driving biotic change to vary within and among bioregions. Predicting the net effect of multiple climate-induced stressors over a range of environments is complex. Yet understanding the response of SO phytoplankton to climate change is vital if we are to predict the future state/s of the ecosystem, estimate the impacts on fisheries and endangered species, and accurately predict the effects of physical and biotic change in the SO on global climate. This review looks at the major environmental factors that define the structure and function of phytoplankton communities in the SO, examines the forecast changes in the SO environment, predicts the likely effect of these changes on phytoplankton, and considers the ramifications for trophodynamics and feedbacks to global climate change. Predictions strongly suggest that all regions of the SO will experience changes in phytoplankton productivity and community composition with climate change. The nature, and even the sign, of these changes varies within and among regions and will depend upon the magnitude and sequence in which these environmental changes are imposed. It is likely that predicted changes to phytoplankton communities will affect SO biogeochemistry, carbon export, and nutrition for higher trophic levels.}
+}
+

@@ -1,0 +1,24 @@
+why is it important to understand anything about sea ice
+specifically about how it effects 
+
+seasonality of sea ice effects amounts of light that is able to pass into upper layer of ocean which has effect ----
+
+20% of 70 for no. of pages for intro + literature review
+
+- sea ice (textbook) 2nd edition
+
+
+1. The Antarctic and the importance of understanding the properties of sea ice, specifically its effects on climate
+
+2. The life cycle of sea ice in the southern ocean/Antarctic, and how it effects the amount of light able to pass through into the upper layer of the ocean
+
+3. Phytoplankton and algae and their importance to the ecosystem + relevance of PAR
+
+4. Current methods for measuring PAR, research grade PAR sensors and DIY PAR sensors
+		| wavelength | cost | location of deployment | length of deployment | 
+Literature 1	|
+
+
+5. Thermistor sensor chains (conductivity/salinity) (SIMB Buoy)
+
+
