@@ -1,0 +1,113 @@
+@INPROCEEDINGS{PARAgriculture,
+  author={Caya, Meo Vincent C. and Alcantara, Jonald T. and Carlos, Jennie S. and Cereno, Sherwin Sam B.},
+  booktitle={2018 3rd International Conference on Computer and Communication Systems (ICCCS)}, 
+  title={Photosynthetically Active Radiation (PAR) Sensor Using an Array of Light Sensors with the Integration of Data Logging for Agricultural Application}, 
+  year={2018},
+  volume={},
+  number={},
+  pages={377-381},
+  doi={10.1109/CCOMS.2018.8463321}}
+
+@article{PARduino,
+    author = {Barnard, Holly R. and Findley, Matthew C. and Csavina, Janae},
+    title = "{PARduino: a simple and inexpensive device for logging photosynthetically active radiation}",
+    journal = {Tree Physiology},
+    volume = {34},
+    number = {6},
+    pages = {640-645},
+    year = {2014},
+    month = {06},
+    issn = {0829-318X},
+    doi = {10.1093/treephys/tpu044},
+    url = {https://doi.org/10.1093/treephys/tpu044},
+    eprint = {https://academic.oup.com/treephys/article-pdf/34/6/640/17432705/tpu044.pdf},
+}
+
+@article{PARQuantumScalar,
+author = {Booth, Charles R.},
+title = {The design and evaluation of a measurement system for photosynthetically active quantum scalar irradiance1},
+journal = {Limnology and Oceanography},
+volume = {21},
+number = {2},
+pages = {326-336},
+doi = {https://doi.org/10.4319/lo.1976.21.2.0326},
+url = {https://aslopubs.onlinelibrary.wiley.com/doi/abs/10.4319/lo.1976.21.2.0326},
+eprint = {https://aslopubs.onlinelibrary.wiley.com/doi/pdf/10.4319/lo.1976.21.2.0326},
+year = {1976}
+}
+
+@article{PARInstruments,
+ ISSN = {00218901, 13652664},
+ URL = {http://www.jstor.org/stable/2403379},
+ abstract = {(1) The design of an instrument for the simultaneous measurement of photosynthetically active radiation and red, far-red and blue light is described. The optical responses of the instrument closely match the action spectra of photosynthesis and some important photomorphogenic responses within the waveband of 400 to 800 nm. (2) The design of a single instrument for the measurement of the quantum irradiance at 660 and 730 nm is also shown. (3) The application of these instruments to measurements in the field and the controlled environment is described.},
+ author = {F. I. Woodward},
+ journal = {Journal of Applied Ecology},
+ number = {1},
+ pages = {103--115},
+ publisher = {[British Ecological Society, Wiley]},
+ title = {Instruments for the Measurement of Photosynthetically Active Radiation and Red, Far-Red and Blue Light},
+ urldate = {2023-08-10},
+ volume = {20},
+ year = {1983}
+}
+
+@book{PARConstruction,
+  title={Construction and testing of an inexpensive PAR sensor},
+  author={Fielder, Peter and Comeau, PG and others},
+  volume={53},
+  year={2000},
+  publisher={Citeseer}
+}
+
+@article{PARFieldCanopies,
+title = {A low cost instrument for measurement of photosynthetically active radiation in field canopies},
+journal = {Agricultural Meteorology},
+volume = {18},
+number = {3},
+pages = {187-195},
+year = {1977},
+issn = {0002-1571},
+doi = {https://doi.org/10.1016/0002-1571(77)90036-X},
+url = {https://www.sciencedirect.com/science/article/pii/000215717790036X},
+author = {R.C. Muchow and G.L. Kerven},
+}
+
+@article{PARSolarimeter,
+title = {A solarimeter for measuring photosynthetically active radiation},
+journal = {Agricultural Meteorology},
+volume = {3},
+number = {5},
+pages = {353-366},
+year = {1966},
+issn = {0002-1571},
+doi = {https://doi.org/10.1016/0002-1571(66)90017-3},
+url = {https://www.sciencedirect.com/science/article/pii/0002157166900173},
+author = {K.J. McCree},
+}
+
+@article{PAR5Year,
+author = {Mims III, Forrest M.},
+title = {A 5-Year Study of a New Kind of Photosynthetically Active Radiation Sensor¶*},
+journal = {Photochemistry and Photobiology},
+volume = {77},
+number = {1},
+pages = {30-33},
+doi = {https://doi.org/10.1562/0031-8655(2003)0770030AYSOAN2.0.CO2},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1562/0031-8655%282003%290770030AYSOAN2.0.CO2},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1562/0031-8655%282003%290770030AYSOAN2.0.CO2},
+year = {2003}
+}
+
+@INPROCEEDINGS{PARDevelopment,
+  author={Rajendran, Jegan and Leon-Salas, Walter D. and Fan, Xiaozhe and Zhang, Yizhou and Vizcardo, Miguel A. and Postigo, Mauricio},
+  booktitle={2020 IEEE International Symposium on Circuits and Systems (ISCAS)}, 
+  title={On the Development of a Low-Cost Photosynthetically Active Radiation (PAR) Sensor}, 
+  year={2020},
+  volume={},
+  number={},
+  pages={1-5},
+  doi={10.1109/ISCAS45731.2020.9181220}}
+
+
+
+
