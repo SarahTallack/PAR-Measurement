@@ -55,10 +55,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "lib_footprint_issues|218400000|109352266|33433bc8-9188-4162-9985-cff6c7bb7bb6|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|218548070|116841744|de024917-9eb5-47d9-bcc4-c041326ea081|00000000-0000-0000-0000-000000000000"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -116,7 +113,7 @@
         "max_error": 0.005,
         "min_clearance": 0.0,
         "min_connection": 0.0,
-        "min_copper_edge_clearance": 0.19999999999999998,
+        "min_copper_edge_clearance": 0.0,
         "min_hole_clearance": 0.25,
         "min_hole_to_hole": 0.25,
         "min_microvia_diameter": 0.19999999999999998,
@@ -176,8 +173,9 @@
       ],
       "track_widths": [
         0.0,
-        0.0,
-        0.3
+        0.1,
+        0.3,
+        0.5
       ],
       "via_dimensions": [
         {
@@ -410,7 +408,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "LightSensor.kicad_pro",
+    "filename": "TestingRig.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -487,7 +485,7 @@
   },
   "sheets": [
     [
-      "8985338b-1403-4fdb-a4a7-da7f590a3346",
+      "7d6f4d7d-d6a9-4552-abfe-3756006050e9",
       ""
     ]
   ],
