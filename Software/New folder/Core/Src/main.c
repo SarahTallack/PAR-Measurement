@@ -58,8 +58,17 @@ char buffer[60];
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
-void UART_Print(char data[60]);
-void UART_Dec_Print(int data);
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+  return ch;
+}
 
 /* USER CODE END PFP */
 
@@ -100,17 +109,14 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
-//  memset(buffer, 0, sizeof(buffer));
-//  sprintf(buffer, "AS7341 Spectral Sensor Code...\r\n");
-//  HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
-  UART_Print("AS7341 Spectral Sensor Code...\r\n");
-  DEV_ModuleInit();
-
+  printf("AS7341 Spectral Sensor Code...\r\n");
+//  DEV_ModuleInit();
   AS7341_Init(eSpm);
-  AS7341_ATIME_config(100);
-  AS7341_ASTEP_config(999);
-  AS7341_AGAIN_config(6);
-  AS7341_EnableLED(false);// LED Enable
+  	AS7341_ATIME_config(100);
+  	AS7341_ASTEP_config(999);
+  	AS7341_AGAIN_config(6);
+  	AS7341_EnableLED(false);// LED Enable
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -120,39 +126,51 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+//	Getdata_test();
+
+//	Getflicker_test();
+
+//	Syns_test();
+
+//	INT_test();
+
+//	pinINT_test();
+
+//	Clear_all();
+
 	AS7341_ControlLed(true,10);//Turn on or off the LED and set the brightness of the LED
 	sModeOneData_t data1;
 	sModeTwoData_t data2;
 
-//	Getdata_test();
-
 	AS7341_startMeasure(eF1F4ClearNIR);
 	data1 = AS7341_ReadSpectralDataOne();
-	UART_Print("channel 1(405-425nm):\r\n");
-	UART_Dec_Print(data1.channel1);
-	UART_Print("channel 2(435-455nm):\r\n");
-	UART_Dec_Print(data1.channel2);
-	UART_Print("channel 3(470-490nm):\r\n");
-	UART_Dec_Print(data1.channel3);
-	UART_Print("channel 4(505-525nm):\r\n");
-	UART_Dec_Print(data1.channel4);
+	printf("channel1(405-425nm):\r\n");
+	printf("%d\r\n",data1.channel1);
+	printf("channel2(435-455nm):\r\n");
+	printf("%d\r\n",data1.channel2);
+	printf("channel3(470-490nm):\r\n");
+	printf("%d\r\n",data1.channel3);
+	printf("channel4(505-525nm):\r\n");
+	printf("%d\r\n",data1.channel4);
 
 	AS7341_startMeasure(eF5F8ClearNIR);
 	data2 =AS7341_ReadSpectralDataTwo();
-	UART_Print("channel 5(545-565nm):\r\n");
-	UART_Dec_Print(data2.channel5);
-	UART_Print("channel 6(580-600nm):\r\n");
-	UART_Dec_Print(data2.channel6);
-	UART_Print("channel 7(620-640nm):\r\n");
-	UART_Dec_Print(data2.channel7);
-	UART_Print("channel 8(670-690nm):\r\n");
-	UART_Dec_Print(data2.channel8);
-	UART_Print("Clear:\r\n");
-	UART_Dec_Print(data2.CLEAR);
-	UART_Print("NIR:\r\n");
-	UART_Dec_Print(data2.NIR);
-	UART_Print("--------------------------\r\n");
+	printf("channel5(545-565nm):\r\n");
+	printf("%d\r\n",data2.channel5);
+	printf("channel6(580-600nm):\r\n");
+	printf("%d\r\n",data2.channel6);
+	printf("channel7(620-640nm):\r\n");
+	printf("%d\r\n",data2.channel7);
+	printf("channel8(670-690nm):\r\n");
+	printf("%d\r\n",data2.channel8);
+	printf("Clear:\r\n");
+	printf("%d\r\n",data2.CLEAR);
+	printf("NIR:\r\n");
+	printf("%d\r\n",data2.NIR);
+	printf("--------------------------\r\n");
 	DEV_Delay_ms(500);
+
   }
   /* USER CODE END 3 */
 }
@@ -207,18 +225,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-void UART_Print(char data[60]){
-	memset(buffer, 0, sizeof buffer);
-	sprintf(buffer, data);
-	HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
-}
-
-void UART_Dec_Print(int data){
-	memset(buffer, 0, sizeof buffer);
-	sprintf(buffer, "%d\r\n", data);
-	HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
-}
 
 /* USER CODE END 4 */
 

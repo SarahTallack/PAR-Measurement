@@ -32,6 +32,7 @@ void Getdata_test(void)
 		AS7341_ControlLed(true,10);//Turn on or off the LED and set the brightness of the LED
 		sModeOneData_t data1;
 		sModeTwoData_t data2;
+
 		AS7341_startMeasure(eF1F4ClearNIR);
 		data1 = AS7341_ReadSpectralDataOne();
 		printf("channel1(405-425nm):\r\n");
@@ -42,6 +43,7 @@ void Getdata_test(void)
 		printf("%d\r\n",data1.channel3);
 		printf("channel4(505-525nm):\r\n");   
 		printf("%d\r\n",data1.channel4);
+
 		AS7341_startMeasure(eF5F8ClearNIR);
 		data2 =AS7341_ReadSpectralDataTwo();
 		printf("channel5(545-565nm):\r\n");
@@ -61,5 +63,3 @@ void Getdata_test(void)
 	}
 
 }
-
-

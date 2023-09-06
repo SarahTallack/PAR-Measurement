@@ -4,6 +4,7 @@
 "./Core/Src/INT_test.o"
 "./Core/Src/Syns_test.o"
 "./Core/Src/Waveshare_AS7341.o"
+"./Core/Src/clear.o"
 "./Core/Src/gpio.o"
 "./Core/Src/i2c.o"
 "./Core/Src/main.o"

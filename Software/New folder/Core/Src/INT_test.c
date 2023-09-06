@@ -29,7 +29,7 @@ void INT_test(void)
 	AS7341_ATIME_config(100);
 	AS7341_ASTEP_config(999);
 	AS7341_AGAIN_config(6);
-	AS7341_SetThreshold(300,10000);//Set the upper and lower thresholds(Notice the relation to the gain)
+	AS7341_SetThreshold(4000,10000);//Set the upper and lower thresholds(Notice the relation to the gain)
 	AS7341_SetInterruptPersistence(0);
 	AS7341_SetSpectralThresholdChannel(4);
 	

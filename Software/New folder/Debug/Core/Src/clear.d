@@ -1,4 +1,5 @@
-Core/Src/Syns_test.o: ../Core/Src/Syns_test.c ../Core/Inc/DEV_Config.h \
+Core/Src/clear.o: ../Core/Src/clear.c ../Core/Inc/test.h \
+ ../Core/Inc/DEV_Config.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -29,6 +30,7 @@ Core/Src/Syns_test.o: ../Core/Src/Syns_test.c ../Core/Inc/DEV_Config.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../Core/Inc/main.h ../Core/Inc/usart.h ../Core/Inc/i2c.h \
  ../Core/Inc/Waveshare_AS7341.h ../Core/Inc/DEV_Config.h
+../Core/Inc/test.h:
 ../Core/Inc/DEV_Config.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
