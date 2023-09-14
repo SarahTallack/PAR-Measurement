@@ -1,5 +1,0 @@
-Initialization is complete !
-Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR
-823,916,774,784,823,916,774,784,2160,1076;
-814,906,763,772,814,906,763,772,2133,1071;
-741,907,764,777,741,907,764,777,2031,1127;
