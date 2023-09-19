@@ -18,7 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "i2c.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -105,8 +107,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART2_UART_Init();
   MX_I2C1_Init();
+  MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
 
   printf("AS7341 Spectral Sensor Code...\r\n");
@@ -171,6 +175,7 @@ int main(void)
 //	printf("%d\r\n",data2.NIR);
 //	printf("--------------------------\r\n");
 //	DEV_Delay_ms(500);
+	__HAL_TIM_SET_PRESCALER(&htim2,newValue);
 
   }
   /* USER CODE END 3 */
