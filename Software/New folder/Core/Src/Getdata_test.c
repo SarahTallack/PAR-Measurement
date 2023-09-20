@@ -29,6 +29,12 @@ void Getdata_test(void)
 	AS7341_EnableLED(false);// LED Enable
   while(1)
 	{
+		uint8_t data = I2C_Read_Byte(AS7341_ATIME);
+		printf("ATIME %d\r\n",data);
+		data = I2C_Read_Byte(AS7341_ASTEP_L);
+		printf("ASTEP_L %d\r\n",data);
+		data = I2C_Read_Byte(AS7341_ASTEP_H);
+		printf("ASTEP_H %d\r\n",data);
 		AS7341_ControlLed(true,10);//Turn on or off the LED and set the brightness of the LED
 		sModeOneData_t data1;
 		sModeTwoData_t data2;

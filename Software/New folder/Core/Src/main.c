@@ -30,7 +30,7 @@
 #include "string.h"
 #include "stdio.h"
 
-#include "test.h"
+//#include "test.h"
 #include "Waveshare_AS7341.h"
 #include "DEV_Config.h"
 /* USER CODE END Includes */
@@ -132,7 +132,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-//	Getdata_test();
+	Getdata_test();
 
 //	Getflicker_test();
 
@@ -140,7 +140,7 @@ int main(void)
 
 //	INT_test();
 
-	pinINT_test();
+//	pinINT_test();
 
 //	Clear_all();
 
@@ -175,7 +175,7 @@ int main(void)
 //	printf("%d\r\n",data2.NIR);
 //	printf("--------------------------\r\n");
 //	DEV_Delay_ms(500);
-	__HAL_TIM_SET_PRESCALER(&htim2,newValue);
+//	__HAL_TIM_SET_PRESCALER(&htim2,newValue);
 
   }
   /* USER CODE END 3 */

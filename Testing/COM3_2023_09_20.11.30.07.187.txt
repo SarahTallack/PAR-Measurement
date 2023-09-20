@@ -1,0 +1,22 @@
+11:30:07:608 -> 254,334,375,559,255,335,377,562,1367,961 
+11:30:07:612 -> Total measurement and transmission time: 774
+11:30:07:616 -> ------------------------------------------------------
+11:30:07:773 -> Total measurement time: 151
+11:30:07:775 -> Total measurement time 2: 75
+11:30:08:391 -> 256,337,379,565,257,338,381,567,1380,971 
+11:30:08:399 -> Total measurement and transmission time: 774
+11:30:08:405 -> ------------------------------------------------------
+11:30:08:555 -> Total measurement time: 151
+11:30:08:557 -> Total measurement time 2: 75
+11:30:09:173 -> 257,339,382,572,229,278,331,445,824,567 
+11:30:09:179 -> Total measurement and transmission time: 773
+11:30:09:181 -> ------------------------------------------------------
+11:30:09:336 -> Total measurement time: 150
+11:30:09:338 -> Total measurement time 2: 75
+11:30:09:954 -> 208,231,303,362,182,201,269,317,592,476 
+11:30:09:958 -> Total measurement and transmission time: 772
+11:30:09:962 -> ------------------------------------------------------
+11:30:10:180 -> Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR
+11:30:10:188 -> 0x80 3
+11:30:10:340 -> Total measurement time: 151
+11:30:10:342 -> Total measurement time 2: 75

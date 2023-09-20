@@ -1,0 +1,116 @@
+11:28:00:357 -> Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR
+11:28:00:516 -> Total measurement time: 150
+11:28:00:518 -> Total measurement time 2: 75
+11:28:01:800 -> Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR
+11:28:01:809 -> Wtime 0
+11:28:02:289 -> Total measurement time: 97
+11:28:02:292 -> Total measurement time 2: 75
+11:28:02:906 -> 380,475,551,739,378,471,548,733,1322,690 
+11:28:02:936 -> Total measurement and transmission time: 719
+11:28:02:938 -> ------------------------------------------------------
+11:28:03:070 -> Total measurement time: 151
+11:28:03:073 -> Total measurement time 2: 75
+11:28:03:688 -> 363,439,522,681,357,432,515,670,1254,668 
+11:28:03:692 -> Total measurement and transmission time: 774
+11:28:03:696 -> ------------------------------------------------------
+11:28:03:852 -> Total measurement time: 151
+11:28:03:855 -> Total measurement time 2: 75
+11:28:04:469 -> 361,438,521,680,362,440,523,682,1271,678 
+11:28:04:473 -> Total measurement and transmission time: 774
+11:28:04:478 -> ------------------------------------------------------
+11:28:04:634 -> Total measurement time: 151
+11:28:04:637 -> Total measurement time 2: 75
+11:28:05:251 -> 364,442,525,686,365,444,527,688,1278,685 
+11:28:05:256 -> Total measurement and transmission time: 774
+11:28:05:259 -> ------------------------------------------------------
+11:28:05:416 -> Total measurement time: 151
+11:28:05:418 -> Total measurement time 2: 75
+11:28:06:034 -> 368,448,532,695,369,449,533,697,1293,699 
+11:28:06:038 -> Total measurement and transmission time: 774
+11:28:06:043 -> ------------------------------------------------------
+11:28:06:198 -> Total measurement time: 151
+11:28:06:201 -> Total measurement time 2: 75
+11:28:06:815 -> 370,451,535,699,371,452,537,702,1300,705 
+11:28:06:820 -> Total measurement and transmission time: 774
+11:28:06:824 -> ------------------------------------------------------
+11:28:06:980 -> Total measurement time: 151
+11:28:06:983 -> Total measurement time 2: 75
+11:28:07:598 -> 370,452,537,702,370,451,537,701,1293,699 
+11:28:07:603 -> Total measurement and transmission time: 774
+11:28:07:606 -> ------------------------------------------------------
+11:28:07:771 -> Total measurement time: 151
+11:28:07:772 -> Total measurement time 2: 75
+11:28:08:380 -> 369,450,534,699,369,452,535,700,1296,705 
+11:28:08:384 -> Total measurement and transmission time: 774
+11:28:08:388 -> ------------------------------------------------------
+11:28:08:544 -> Total measurement time: 151
+11:28:08:547 -> Total measurement time 2: 75
+11:28:09:162 -> 371,458,537,710,378,468,545,726,1345,741 
+11:28:09:168 -> Total measurement and transmission time: 774
+11:28:09:170 -> ------------------------------------------------------
+11:28:09:327 -> Total measurement time: 151
+11:28:09:329 -> Total measurement time 2: 75
+11:28:09:945 -> 375,451,550,699,361,433,526,686,1254,697 
+11:28:09:948 -> Total measurement and transmission time: 774
+11:28:09:952 -> ------------------------------------------------------
+11:28:10:109 -> Total measurement time: 151
+11:28:10:111 -> Total measurement time 2: 75
+11:28:10:726 -> 355,423,520,663,372,446,543,708,1268,710 
+11:28:10:730 -> Total measurement and transmission time: 774
+11:28:10:734 -> ------------------------------------------------------
+11:28:10:891 -> Total measurement time: 151
+11:28:10:894 -> Total measurement time 2: 75
+11:28:11:509 -> 359,427,522,674,326,398,487,630,1206,683 
+11:28:11:549 -> Total measurement and transmission time: 774
+11:28:11:550 -> ------------------------------------------------------
+11:28:11:673 -> Total measurement time: 151
+11:28:11:676 -> Total measurement time 2: 75
+11:28:12:291 -> 290,346,429,546,282,322,398,514,836,503 
+11:28:12:296 -> Total measurement and transmission time: 773
+11:28:12:299 -> ------------------------------------------------------
+11:28:12:454 -> Total measurement time: 150
+11:28:12:457 -> Total measurement time 2: 75
+11:28:12:710 -> Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR
+11:28:12:718 -> Wtime 0
+11:28:12:870 -> Total measurement time: 151
+11:28:12:873 -> Total measurement time 2: 75
+11:28:13:487 -> 184,184,263,279,244,279,333,438,678,398 
+11:28:13:491 -> Total measurement and transmission time: 773
+11:28:13:495 -> ------------------------------------------------------
+11:28:13:651 -> Total measurement time: 150
+11:28:13:673 -> Total measurement time 2: 75
+11:28:14:268 -> 327,405,472,627,411,500,587,799,1412,811 
+11:28:14:272 -> Total measurement and transmission time: 773
+11:28:14:279 -> ------------------------------------------------------
+11:28:14:433 -> Total measurement time: 151
+11:28:14:435 -> Total measurement time 2: 75
+11:28:15:050 -> 405,497,580,799,398,484,569,776,1291,738 
+11:28:15:054 -> Total measurement and transmission time: 774
+11:28:15:059 -> ------------------------------------------------------
+11:28:15:215 -> Total measurement time: 151
+11:28:15:218 -> Total measurement time 2: 75
+11:28:15:832 -> 380,461,548,739,380,458,548,737,1322,740 
+11:28:15:836 -> Total measurement and transmission time: 774
+11:28:15:841 -> ------------------------------------------------------
+11:28:15:997 -> Total measurement time: 151
+11:28:16:000 -> Total measurement time 2: 75
+11:28:16:614 -> 374,449,538,723,369,445,531,714,1275,717 
+11:28:16:618 -> Total measurement and transmission time: 774
+11:28:16:625 -> ------------------------------------------------------
+11:28:16:779 -> Total measurement time: 151
+11:28:16:782 -> Total measurement time 2: 75
+11:28:17:424 -> 363,436,521,700,366,450,517,712,1175,709 
+11:28:17:425 -> Total measurement and transmission time: 774
+11:28:17:425 -> ------------------------------------------------------
+11:28:17:561 -> Total measurement time: 151
+11:28:17:564 -> Total measurement time 2: 75
+11:28:18:180 -> 336,419,477,666,294,367,417,584,1008,657 
+11:28:18:183 -> Total measurement and transmission time: 774
+11:28:18:189 -> ------------------------------------------------------
+11:28:18:343 -> Total measurement time: 151
+11:28:18:346 -> Total measurement time 2: 75
+11:28:18:961 -> 281,350,397,554,282,351,398,555,952,623 
+11:28:18:964 -> Total measurement and transmission time: 773
+11:28:18:969 -> ------------------------------------------------------
+11:28:19:124 -> Total measurement time: 150
+11:28:19:127 -> Total measurement time 2: 75
