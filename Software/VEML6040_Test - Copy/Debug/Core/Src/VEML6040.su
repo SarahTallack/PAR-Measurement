@@ -1,0 +1,10 @@
+../Core/Src/VEML6040.c:3:6:VEML6040_Init	16	static
+../Core/Src/VEML6040.c:8:19:VEML6040_Begin	24	static
+../Core/Src/VEML6040.c:17:6:VEML6040_SetConfiguration	32	static
+../Core/Src/VEML6040.c:24:10:VEML6040_Read	32	static
+../Core/Src/VEML6040.c:36:10:VEML6040_GetRed	16	static
+../Core/Src/VEML6040.c:40:10:VEML6040_GetGreen	16	static
+../Core/Src/VEML6040.c:44:10:VEML6040_GetBlue	16	static
+../Core/Src/VEML6040.c:48:10:VEML6040_GetWhite	16	static
+../Core/Src/VEML6040.c:52:7:VEML6040_GetAmbientLight	24	static
+../Core/Src/VEML6040.c:70:10:VEML6040_GetCCT	32	static
