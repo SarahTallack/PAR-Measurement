@@ -30,7 +30,7 @@
 #include "string.h"
 #include "stdio.h"
 
-//#include "test.h"
+#include "test.h"
 #include "Waveshare_AS7341.h"
 #include "DEV_Config.h"
 /* USER CODE END Includes */
@@ -114,7 +114,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   printf("AS7341 Spectral Sensor Code...\r\n");
-//  DEV_ModuleInit();
+  DEV_ModuleInit();
 //
 //  AS7341_Init(eSpm);
 //  	AS7341_ATIME_config(100);
