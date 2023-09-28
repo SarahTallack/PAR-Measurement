@@ -1,0 +1,7 @@
+../Core/Src/main.c:72:1:__io_putchar	16	static
+../Core/Src/main.c:89:5:main	80	static
+../Core/Src/main.c:242:6:SystemClock_Config	96	static
+../Core/Src/main.c:294:6:AS7341_ClearStatus	16	static
+../Core/Src/main.c:308:6:AS7341_EnableSleepAfterInterrupt	24	static
+../Core/Src/main.c:326:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/main.c:351:6:Error_Handler	4	static,ignoring_inline_asm
