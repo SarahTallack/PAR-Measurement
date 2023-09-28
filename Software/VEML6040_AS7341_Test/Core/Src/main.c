@@ -1,6 +1,11 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
+  * Author: Sarah Tallack
+  * Date: 28 September 2023
+  * Description: This program is designed to read and transmit sensor data from
+  * both the VEML6040 and AS7341 sensors
+  ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
   ******************************************************************************
@@ -25,6 +30,18 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "inttypes.h"
+#include "string.h"
+#include "stdio.h"
+#include "stdbool.h"
+
+#include "Config_Parameters.h"
+
+#include "VEML6040.h"
+
+#include "Waveshare_AS7341.h"
+#include "DEV_Config.h"
 
 /* USER CODE END Includes */
 
@@ -52,6 +69,9 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+
+void VEML6040_Start();
+void AS7341_Start();
 
 /* USER CODE END PFP */
 
@@ -157,6 +177,114 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+/******************************************************************************
+function:	Configure VEML6040
+info：		Set the sensing mode, enable or disable interrupts, set integration
+			time, sensor gain and enable/disable LED.
+******************************************************************************/
+void VEML6040_Start()
+{
+	  // Initialize the VEML6040 sensor
+	  VEML6040_Init(&veml6040, &hi2c1);
+	  // Set the sensor configuration (e.g., VEML6040_IT_160MS)
+	  VEML6040_SetConfiguration(&veml6040, VEML6040_IT_160MS);
+}
+
+/******************************************************************************
+function:	Configure AS7341
+info：		Set the sensing mode, enable or disable interrupts, set integration
+			time, sensor gain and enable/disable LED.
+******************************************************************************/
+void AS7341_Start()
+{
+	printf("Configuring AS7341");
+	DEV_ModuleInit();
+
+	AS7341_Init(MODE);
+	AS7341_EnableSpectralInterrupt(INT);
+	AS7341_AGAIN_config(AGAIN);
+	AS7341_EnableLED(LED);
+
+	/* t_int = (ATIME + 1)*(ASTEP + 1)*2.78e-6
+	 * max t_int = 50s */
+	switch(t_int)
+	{
+	case 10:
+		ATIME = 29;
+		ASTEP = 119;
+		break;
+	case 20:
+		ATIME = 29;
+		ASTEP = 239;
+		break;
+	case 50:
+		ATIME = 29;
+		ASTEP = 599;
+		break;
+	case 100:
+		ATIME = 59;
+		ASTEP = 599;
+		break;
+	case 200:
+		ATIME = 59;
+		ASTEP = 1198;
+		break;
+	case 500:
+		ATIME = 59;
+		ASTEP = 2997;
+		break;
+	case 1000:
+		ATIME = 39;
+		ASTEP = 8992;
+		break;
+	case 2000:
+		ATIME = 29;
+		ASTEP = 23980;
+		break;
+	default:
+		ATIME = 29;
+		ASTEP = 599;
+		break;
+	}
+
+	AS7341_ATIME_config(ATIME);
+	AS7341_ASTEP_config(ASTEP);
+	printf("Configuring AS7341 done\r\n ------------------------\r\n");
+}
+
+/******************************************************************************
+function:	Toggle pins when timer has rolled over
+info：		Callback: timer as rolled over. Toggle LED and GPIO output
+******************************************************************************/
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  // Check which version of the timer triggered this callback and toggle LED
+  if (htim == &htim16 )
+  {
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_Pin);
+	  HAL_GPIO_TogglePin(GPIOA, LD2_Pin);
+  }
+
+  switch(t_meas)
+    {
+    case(100):
+		TIM16->ARR = 100-1;
+    	  break;
+    case(500):
+		TIM16->ARR = 500-1;
+    	  break;
+    case(1000):
+		TIM16->ARR = 1000-1;
+    	  break;
+    case(5000):
+		TIM16->ARR = 5000-1;
+    	  break;
+    case(10000):
+		TIM16->ARR = 10000-1;
+    	  break;
+    }
+}
 
 /* USER CODE END 4 */
 
