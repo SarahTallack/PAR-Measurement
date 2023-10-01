@@ -43,6 +43,13 @@ typedef struct {
     uint8_t lastConfiguration;
 } VEML6040_Handle;
 
+typedef struct{
+  uint16_t r;/**<red channel data>*/
+  uint16_t g;/**<green channel data>*/
+  uint16_t b;/**<blue channel data>*/
+  uint16_t w;/**<white channel data>*/
+}rgb_t;
+
 void VEML6040_Init(VEML6040_Handle *handle, I2C_HandleTypeDef *hi2c);
 HAL_StatusTypeDef VEML6040_Begin(VEML6040_Handle *handle);
 void VEML6040_SetConfiguration(VEML6040_Handle *handle, uint8_t configuration);
@@ -50,6 +57,9 @@ uint16_t VEML6040_GetRed(VEML6040_Handle *handle);
 uint16_t VEML6040_GetGreen(VEML6040_Handle *handle);
 uint16_t VEML6040_GetBlue(VEML6040_Handle *handle);
 uint16_t VEML6040_GetWhite(VEML6040_Handle *handle);
+
+rgb_t VEML_GetData(VEML6040_Handle *handle);
+
 float VEML6040_GetAmbientLight(VEML6040_Handle *handle);
 uint16_t VEML6040_GetCCT(VEML6040_Handle *handle, float offset);
 

@@ -53,6 +53,14 @@ typedef union
 #define NUM_PIXELS		1*9
 #define DMA_BUFF_SIZE	(NUM_PIXELS * 24) + 1
 
+#define SWEEP 0
+#define PI 3.14159265
+
+#define COLOUR 4 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
+
+#define R 255
+#define G 00
+#define B 255
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -70,6 +78,9 @@ uint32_t *pBuff;
 int i, j, k;
 uint16_t stepSize;
 
+
+int brightness;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -81,6 +92,9 @@ void red(void);
 void green(void);
 void blue(void);
 void white(void);
+void rgb(uint8_t r, uint8_t g, uint8_t b);
+void setBrightness(uint8_t level);
+void Set_Brightness(int brightness);
 
 void sweep(uint8_t r, uint8_t g, uint8_t b);
 
@@ -137,6 +151,7 @@ int main(void)
 
   k = 0;
   stepSize = 4;
+  brightness = 30;
 
   while (1)
   {
@@ -144,15 +159,28 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	rainbow();
-//	red();
-//	green();
-//	blue();
-//	white();
-//	sweep(0,255,255);
+//	rainbow();
+	switch(COLOUR)
+	{
+	case(1):
+			rgb(255, 0, 0);
+			break;
+	case(2):
+			rgb(0, 255, 0);
+			break;
+	case(3):
+			rgb(0, 0, 255);
+			break;
+	case(4):
+			rgb(255, 255, 255);
+			break;
+	default:
+			rgb(R, G, B);
+			break;
+	}
+
+	Set_Brightness(30);
 	WS2812_send();
-
-
 
     HAL_Delay(100);
   }
@@ -210,6 +238,20 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+
+void Set_Brightness(int brightness)
+{
+	if (brightness > 45) brightness = 45;
+	float angle = 90-brightness;  // in degrees
+	angle = angle*PI / 180;  // in rad
+	for (int i= 0; i<NUM_PIXELS; i++)
+	{
+		pixel[i].color.g = pixel[i].color.g/(tan(angle));
+		pixel[i].color.r = pixel[i].color.r/(tan(angle));
+		pixel[i].color.b = pixel[i].color.b/(tan(angle));
+	}
+}
+
 void rainbow(void)
 {
 	for (i = (NUM_PIXELS - 1); i > 0; i--)
@@ -237,85 +279,30 @@ void rainbow(void)
 		pixel[0].color.b = 764 - k; //[254, 0]
 	}
 	k = (k + stepSize) % 765;
-
-	// not so bright
-	pixel[0].color.g >>= 2;
-	pixel[0].color.r >>= 2;
-	pixel[0].color.b >>= 2;
 }
 
 /******************************************************************************
-function:	Set all LEDs to blue
-info：		Loop through all pixel values and set to blue.
+function:	Set all LEDs to RGB value
+info：		Loop through all pixel values and set to RGB colour.
 ******************************************************************************/
-void blue(void)
+void rgb(uint8_t r, uint8_t g, uint8_t b)
 {
+#if SWEEP
+	sweep(r, g, b);
+#else
 	for (i = 0; i < NUM_PIXELS; i++)
 	{
-		pixel[i].color.r = 0;
-		pixel[i].color.g = 0;
-		pixel[i].color.b = 255;
-
-		pixel[i].color.g >>= 2;
-		pixel[i].color.r >>= 2;
-		pixel[i].color.b >>= 2;
+		pixel[i].color.r = r;
+		pixel[i].color.g = g;
+		pixel[i].color.b = b;
 	}
+#endif
 }
 
 /******************************************************************************
-function:	Set all LEDs to green
-info：		Loop through all pixel values and set to green.
+function:	Set first LED to RGB value then sweep through
+info：		Loop through all pixel values and set to RGB colour.
 ******************************************************************************/
-void green(void)
-{
-	for (i = 0; i < NUM_PIXELS; i++)
-	{
-		pixel[i].color.r = 0;
-		pixel[i].color.g = 255;
-		pixel[i].color.b = 0;
-
-		pixel[i].color.g >>= 2;
-		pixel[i].color.r >>= 2;
-		pixel[i].color.b >>= 2;
-	}
-}
-
-/******************************************************************************
-function:	Set all LEDs to red
-info：		Loop through all pixel values and set to red.
-******************************************************************************/
-void red(void)
-{
-	for (i = 0; i < NUM_PIXELS; i++)
-	{
-		pixel[i].color.r = 255;
-		pixel[i].color.g = 0;
-		pixel[i].color.b = 0;
-
-		pixel[i].color.g >>= 2;
-		pixel[i].color.r >>= 2;
-		pixel[i].color.b >>= 2;
-	}
-}
-
-/******************************************************************************
-function:	Set all LEDs to white
-info：		Loop through all pixel values and set to white.
-******************************************************************************/
-void white(void)
-{
-	for (i = 0; i < NUM_PIXELS; i++)
-	{
-		pixel[i].color.r = 255;
-		pixel[i].color.g = 255;
-		pixel[i].color.b = 255;
-
-		pixel[i].color.g >>= 2;
-		pixel[i].color.r >>= 2;
-		pixel[i].color.b >>= 2;
-	}
-}
-
 void sweep(uint8_t r, uint8_t g, uint8_t b)
 {
     // Move pixel data
@@ -343,11 +330,6 @@ void sweep(uint8_t r, uint8_t g, uint8_t b)
     {
     	k = 0;
     }
-
-    // not so bright
-    pixel[0].color.g >>= 2;
-    pixel[0].color.r >>= 2;
-    pixel[0].color.b >>= 2;
 }
 
 void WS2812_send(void)

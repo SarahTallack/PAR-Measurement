@@ -64,6 +64,13 @@
 
 /* USER CODE BEGIN PV */
 
+uint8_t ATIME;
+uint16_t ASTEP;
+
+uint16_t redValue, greenValue, blueValue, whiteValue;
+
+VEML6040_Handle veml6040;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,6 +85,17 @@ void AS7341_Start();
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+  return ch;
+}
 /* USER CODE END 0 */
 
 /**
@@ -114,12 +132,30 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
+  sModeOneData_t data1;
+  sModeTwoData_t data2;
+
+  rgb_t VEML_data;
+
+  VEML6040_Start();
+  AS7341_Start();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  printf("Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR,t_int,t_meas,VEML_R,VEML_G,VEML_B,VEML_W\r\n");
   while (1)
   {
+	  AS7341_startMeasure(eF1F4ClearNIR);
+	  AS7341_startMeasure(eF5F8ClearNIR);
+	  while(!AS7341_MeasureComplete()); // wait for measurement to finish
+	  data1 = AS7341_ReadSpectralDataOne();
+	  data2 =AS7341_ReadSpectralDataTwo();
+	  printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d \r\n", data1.channel1, data1.channel2, data1.channel3, data1.channel4, data2.channel5, data2.channel6, data2.channel7, data2.channel8, data2.CLEAR, data2.NIR, t_int, t_meas);
+
+	  VEML_data = VEML_GetData(&veml6040);
+	  printf("%d,%d,%d,%d", VEML_data.r, VEML_data.g, VEML_data.b, VEML_data.w);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -180,15 +216,16 @@ void SystemClock_Config(void)
 
 /******************************************************************************
 function:	Configure VEML6040
-info：		Set the sensing mode, enable or disable interrupts, set integration
-			time, sensor gain and enable/disable LED.
+info：		Set the I2C channel, and set integration time
 ******************************************************************************/
 void VEML6040_Start()
 {
+	  printf("Configuring VEML6040");
 	  // Initialize the VEML6040 sensor
 	  VEML6040_Init(&veml6040, &hi2c1);
 	  // Set the sensor configuration (e.g., VEML6040_IT_160MS)
-	  VEML6040_SetConfiguration(&veml6040, VEML6040_IT_160MS);
+	  VEML6040_SetConfiguration(&veml6040, VEML6040_IT);
+	  printf("Configuring VEML6040 done\r\n ------------------------\r\n");
 }
 
 /******************************************************************************
@@ -204,7 +241,7 @@ void AS7341_Start()
 	AS7341_Init(MODE);
 	AS7341_EnableSpectralInterrupt(INT);
 	AS7341_AGAIN_config(AGAIN);
-	AS7341_EnableLED(LED);
+	AS7341_EnableLED(LED_AS7341);
 
 	/* t_int = (ATIME + 1)*(ASTEP + 1)*2.78e-6
 	 * max t_int = 50s */
@@ -218,25 +255,49 @@ void AS7341_Start()
 		ATIME = 29;
 		ASTEP = 239;
 		break;
+	case 40:
+		ATIME = 29;
+		ASTEP = 479;
+		break;
 	case 50:
 		ATIME = 29;
 		ASTEP = 599;
+		break;
+	case 80:
+		ATIME = 59;
+		ASTEP = 479;
 		break;
 	case 100:
 		ATIME = 59;
 		ASTEP = 599;
 		break;
+	case 160:
+		ATIME = 59;
+		ASTEP = 958;
+		break;
 	case 200:
 		ATIME = 59;
 		ASTEP = 1198;
+		break;
+	case 320:
+		ATIME = 59;
+		ASTEP = 1917;
 		break;
 	case 500:
 		ATIME = 59;
 		ASTEP = 2997;
 		break;
+	case 640:
+		ATIME = 29;
+		ASTEP = 3826;
+		break;
 	case 1000:
 		ATIME = 39;
 		ASTEP = 8992;
+		break;
+	case 1280:
+		ATIME = 119;
+		ASTEP = 3826;
 		break;
 	case 2000:
 		ATIME = 29;
@@ -262,28 +323,28 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   // Check which version of the timer triggered this callback and toggle LED
   if (htim == &htim16 )
   {
-	  HAL_GPIO_TogglePin(GPIOA, GPIO_Pin);
+	  HAL_GPIO_TogglePin(GPIOA, AS7341_GPIO_Pin);
 	  HAL_GPIO_TogglePin(GPIOA, LD2_Pin);
   }
 
-  switch(t_meas)
-    {
-    case(100):
-		TIM16->ARR = 100-1;
-    	  break;
-    case(500):
-		TIM16->ARR = 500-1;
-    	  break;
-    case(1000):
-		TIM16->ARR = 1000-1;
-    	  break;
-    case(5000):
-		TIM16->ARR = 5000-1;
-    	  break;
-    case(10000):
-		TIM16->ARR = 10000-1;
-    	  break;
-    }
+//  switch(t_meas)
+//    {
+//    case(100):
+//		TIM16->ARR = 100-1;
+//    	  break;
+//    case(500):
+//		TIM16->ARR = 500-1;
+//    	  break;
+//    case(1000):
+//		TIM16->ARR = 1000-1;
+//    	  break;
+//    case(5000):
+//		TIM16->ARR = 5000-1;
+//    	  break;
+//    case(10000):
+//		TIM16->ARR = 10000-1;
+//    	  break;
+//    }
 }
 
 /* USER CODE END 4 */

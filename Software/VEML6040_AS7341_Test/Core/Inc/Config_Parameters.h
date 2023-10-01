@@ -8,17 +8,26 @@
 #ifndef INC_CONFIG_PARAMETERS_H_
 #define INC_CONFIG_PARAMETERS_H_
 
-#define t_meas	500 	//Time between measurements, in ms
+#define t_meas	1000 	//Time between measurements, in ms
 						//Options are: 100, 500, 1000, 5000, 10000
 
 /* Parameter settings for VEML6040 */
+#define VEML6040_IT VEML6040_IT_160MS 	//Set integration time of VEML6040, which leads to corresponding G_Sensitivity and Max Detectable Lux
+										/*	INTEGRATION TIME 	G SENSITIVITY MAX. 	DETECTABLE LUX
+										  	 40 ms 				0.25168 			16 496
+										 	 80 ms 				0.12584 			8248
+											 160 ms 			0.06292 			4124
+											 320 ms 			0.03146 			2062
+											 640 ms 			0.01573 			1031
+											 1280 ms 			0.007865 			515.4
+										 */
 
 /* Parameter settings for AS7341 */
 
-#define MODE 	eSyns	//eSpm -> default setting, spectral measurement, no sync
+#define MODE 	eSpm	//eSpm -> default setting, spectral measurement, no sync
 						//eSyns -> integration with external start, spectral measurement, start sync
 
-#define t_int 	50	//Integration time, in ms
+#define t_int 	160		//Integration time, in ms
 						//Options are: 10, 20, 50, 100, 200, 500, 1000, 2000
 						//default to 50ms
 
@@ -26,7 +35,7 @@
 						//[0 -> 0.5x, 1 -> 1x, 2 -> 2x, 3 -> 4x, 4 -> 8x, 5 -> 16x, 7 -> 64x, 8 -> 128x, 9 -> 256x, 10 -> 512x
 
 #define INT 	false 	//enable or disable interrupt mode (generates interrupt once measurement complete
-#define LED		false	//enable or disable LEDS
+#define LED_AS7341		false	//enable or disable LEDS
 
 
 

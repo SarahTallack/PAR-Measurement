@@ -248,8 +248,6 @@ info：		This function only handles SPM and SYNS modes.
 ******************************************************************************/
 void AS7341_startMeasure(eChChoose_t mode)
 {
-
-
 	  UBYTE data=0;
 	  data = AS7341_Read_Byte(AS7341_CFG_0);  
 	  data = data & (~(1<<4));

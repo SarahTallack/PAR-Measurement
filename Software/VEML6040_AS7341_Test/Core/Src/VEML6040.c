@@ -49,6 +49,16 @@ uint16_t VEML6040_GetWhite(VEML6040_Handle *handle) {
     return VEML6040_Read(handle, COMMAND_CODE_WHITE);
 }
 
+rgb_t VEML_GetData(VEML6040_Handle *handle)
+{
+	rgb_t data;
+	data.r = VEML6040_Read(handle, COMMAND_CODE_RED);
+	data.g = VEML6040_Read(handle, COMMAND_CODE_GREEN);
+	data.b = VEML6040_Read(handle, COMMAND_CODE_BLUE);
+	data.w = VEML6040_Read(handle, COMMAND_CODE_WHITE);
+	return data;
+}
+
 float VEML6040_GetAmbientLight(VEML6040_Handle *handle) {
     uint16_t sensorValue;
     float ambientLightInLux;

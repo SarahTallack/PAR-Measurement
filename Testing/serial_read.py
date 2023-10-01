@@ -15,7 +15,7 @@ def readserial(comport, baudrate, timestamp=False):
     #     f.write(f'Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR\n')
 
     i = 0
-    while i<10:
+    while i<20:
 
         data = ser.readline().decode().strip()
 
