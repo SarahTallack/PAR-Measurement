@@ -27,6 +27,8 @@
 /* USER CODE BEGIN Includes */
 
 #include "math.h"
+
+#include "lcd_stm32f0.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,17 +53,17 @@ typedef union
 #define NEOPIXEL_ZERO 	32 	// (ARR+)(0.32) = (100*0.32) = 32
 #define NEOPIXEL_ONE	68	// (ARR+)(0.68) = (100*0.68) = 68
 
-#define NUM_PIXELS		1*9
+#define NUM_PIXELS		3*9
 #define DMA_BUFF_SIZE	(NUM_PIXELS * 24) + 1
 
 #define SWEEP 0
 #define PI 3.14159265
 
-#define COLOUR 4 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
+#define COLOUR 0 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 
 #define R 255
-#define G 00
-#define B 255
+#define G 255
+#define B 0
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -100,6 +102,8 @@ void Set_Brightness(int brightness);
 void sweep(uint8_t r, uint8_t g, uint8_t b);
 
 void WS2812_send(void);
+
+void helloWorld();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -154,12 +158,15 @@ int main(void)
   stepSize = 4;
   brightness = 30;
 
+  helloWorld();
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
+//	  helloWorld();
 //	rainbow();
 	switch(COLOUR)
 	{
@@ -353,7 +360,15 @@ void WS2812_send(void)
     }
     dmaBuffer[DMA_BUFF_SIZE - 1] = 0; // last element must be 0!
 
+//    HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_1, dmaBuffer, DMA_BUFF_SIZE);
+//    HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_2, dmaBuffer, DMA_BUFF_SIZE);
     HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_3, dmaBuffer, DMA_BUFF_SIZE);
+}
+
+void helloWorld(){
+    init_LCD();
+    lcd_command(CLEAR);
+    lcd_putstring("Hello World! :)");
 }
 /* USER CODE END 4 */
 
