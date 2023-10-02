@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -79,7 +80,7 @@ int i, j, k;
 uint16_t stepSize;
 
 
-int brightness;
+//int brightness;
 
 /* USER CODE END PV */
 

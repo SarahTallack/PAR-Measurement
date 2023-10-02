@@ -212,7 +212,7 @@ void EXTI4_IRQHandler(void)
 
   if (B_UP_Pin)
   {
-	  if (brightness == 45);
+	  if (brightness == 45)
 	  {
 		  brightness = brightness;
 	  }
