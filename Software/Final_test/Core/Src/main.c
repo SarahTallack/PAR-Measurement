@@ -148,6 +148,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  printf("HI");
   while (1)
   {
     /* USER CODE END WHILE */

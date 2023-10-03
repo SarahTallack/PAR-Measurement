@@ -26,9 +26,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "string.h"
+#include "stdio.h"
 #include "math.h"
 
-#include "lcd_stm32f0.h"
+//#include "lcd_stm32f0.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,11 +61,11 @@ typedef union
 #define SWEEP 0
 #define PI 3.14159265
 
-#define COLOUR 0 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
+//#define COLOUR 0 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 
 #define R 255
-#define G 255
-#define B 0
+#define G 0
+#define B 128
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -81,8 +83,8 @@ uint32_t *pBuff;
 int i, j, k;
 uint16_t stepSize;
 
-
-//int brightness;
+uint8_t COLOUR = 0; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
+int brightness;
 
 /* USER CODE END PV */
 
@@ -103,7 +105,9 @@ void sweep(uint8_t r, uint8_t g, uint8_t b);
 
 void WS2812_send(void);
 
-void helloWorld();
+//void helloWorld();
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -112,6 +116,18 @@ void helloWorld();
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 {
   HAL_TIM_PWM_Stop_DMA(htim, TIM_CHANNEL_3);
+}
+
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+  return ch;
 }
 
 /* USER CODE END 0 */
@@ -156,17 +172,16 @@ int main(void)
 
   k = 0;
   stepSize = 4;
-  brightness = 30;
+  brightness = 20;
 
-  helloWorld();
+  printf("look lights");
+//  helloWorld();
 
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-//	  helloWorld();
 //	rainbow();
 	switch(COLOUR)
 	{
@@ -187,7 +202,7 @@ int main(void)
 			break;
 	}
 
-	Set_Brightness(30);
+	Set_Brightness(brightness);
 	WS2812_send();
 
     HAL_Delay(100);
@@ -365,10 +380,51 @@ void WS2812_send(void)
     HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_3, dmaBuffer, DMA_BUFF_SIZE);
 }
 
-void helloWorld(){
-    init_LCD();
-    lcd_command(CLEAR);
-    lcd_putstring("Hello World! :)");
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	uint8_t start = HAL_GetTick();
+	while((start+20)>HAL_GetTick());
+
+	if (GPIO_Pin == B_DOWN_Pin)
+	{
+		printf("Another button yay\r\n");
+		if (brightness == 0)
+		{
+			brightness = brightness;
+		}
+		else
+		{
+			brightness = brightness - 5;
+		}
+	}
+	else if (GPIO_Pin == B_UP_Pin)
+	{
+		printf("Another another button yay\r\n");
+		if (brightness == 45)
+		{
+			brightness = brightness;
+		}
+		else
+		{
+			brightness = brightness + 5;
+		}
+	}
+	else if (GPIO_Pin == B1_Pin)
+	{
+		if (COLOUR == 4)
+		{
+			COLOUR = 0;
+		}
+		else
+		{
+			COLOUR = COLOUR + 1;
+		}
+		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	}
+	else
+	{
+		printf("nothing\r\n");
+	}
 }
 /* USER CODE END 4 */
 

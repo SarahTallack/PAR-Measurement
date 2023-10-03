@@ -60,8 +60,8 @@ all: main-build
 main-build: Final_test.elf secondary-outputs
 
 # Tool invocations
-Final_test.elf Final_test.map: $(OBJS) $(USER_OBJS) C:\Users\sarah\STM32CubeIDE\workspace_1.13.1\Final_test\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Final_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sarah\STM32CubeIDE\workspace_1.13.1\Final_test\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Final_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Final_test.elf Final_test.map: $(OBJS) $(USER_OBJS) C:\Users\sarah\Documents\1.\ University\5th\ Year\EEE4022S\PAR-Measurement\Software\Final_test\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Final_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sarah\Documents\1. University\5th Year\EEE4022S\PAR-Measurement\Software\Final_test\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Final_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

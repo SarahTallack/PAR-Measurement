@@ -1,6 +1,0 @@
-../Core/Src/lcd_stm32f0.c:72:6:lcd_command	9
-../Core/Src/lcd_stm32f0.c:168:6:init_LCD	1
-../Core/Src/lcd_stm32f0.c:191:7:lcd_putchar	9
-../Core/Src/lcd_stm32f0.c:280:6:lcd_putstring	2
-../Core/Src/lcd_stm32f0.c:298:6:pulse_strobe	1
-../Core/Src/lcd_stm32f0.c:320:6:delay	2

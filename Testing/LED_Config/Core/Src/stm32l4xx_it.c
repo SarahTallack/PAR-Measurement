@@ -27,7 +27,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
 
-int brightness;
+extern int brightness;
 
 /* USER CODE END TD */
 
@@ -57,9 +57,7 @@ int brightness;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern DMA_HandleTypeDef hdma_tim2_ch1;
 extern DMA_HandleTypeDef hdma_tim2_ch3;
-extern DMA_HandleTypeDef hdma_tim2_ch2_ch4;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -209,20 +207,22 @@ void EXTI4_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI4_IRQn 0 */
 
-  uint8_t start = HAL_GetTick();
-  while((start+20)>HAL_GetTick());
+//	printf("UP: %d\r\n", HAL_GPIO_ReadPin(B_UP_GPIO_Port, B_UP_Pin));
+//  uint8_t start = HAL_GetTick();
+//  while((start+20)>HAL_GetTick());
 
-  if (B_UP_Pin)
-  {
-	  if (brightness == 45)
-	  {
-		  brightness = brightness;
-	  }
-	  else
-	  {
-		  brightness = brightness + 5;
-	  }
-  }
+//  if (!B_UP_Pin)
+//  {
+//	  printf("Another another button yay");
+//	  if (brightness == 45)
+//	  {
+//		  brightness = brightness;
+//	  }
+//	  else
+//	  {
+//		  brightness = brightness + 5;
+//	  }
+//  }
 
   /* USER CODE END EXTI4_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(B_UP_Pin);
@@ -246,52 +246,32 @@ void DMA1_Channel1_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles DMA1 channel5 global interrupt.
-  */
-void DMA1_Channel5_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
-
-  /* USER CODE END DMA1_Channel5_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_tim2_ch1);
-  /* USER CODE BEGIN DMA1_Channel5_IRQn 1 */
-
-  /* USER CODE END DMA1_Channel5_IRQn 1 */
-}
-
-/**
-  * @brief This function handles DMA1 channel7 global interrupt.
-  */
-void DMA1_Channel7_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Channel7_IRQn 0 */
-
-  /* USER CODE END DMA1_Channel7_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_tim2_ch2_ch4);
-  /* USER CODE BEGIN DMA1_Channel7_IRQn 1 */
-
-  /* USER CODE END DMA1_Channel7_IRQn 1 */
-}
-
-/**
   * @brief This function handles EXTI line[15:10] interrupts.
   */
 void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
-  uint8_t start = HAL_GetTick();
-  while((start+20)>HAL_GetTick());
-  if (B_DOWN_Pin)
-  {
-	  if (brightness == 0)
-	  {
-		  brightness = brightness;
-	  }
-	  else
-	  {
-		  brightness = brightness - 5;
-	  }
-  }
+//  uint8_t start = HAL_GetTick();
+//  while((start+20)>HAL_GetTick());
+
+//  if (!B_DOWN_Pin)
+//  {
+//	  printf("Another button yay");
+//	  if (brightness == 0)
+//	  {
+//		  brightness = brightness;
+//	  }
+//	  else
+//	  {
+//		  brightness = brightness - 5;
+//	  }
+//  }
+
+//  if (B1_Pin)
+//  {
+//	  printf("Button yay");
+//	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+//  }
 
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(B_DOWN_Pin);

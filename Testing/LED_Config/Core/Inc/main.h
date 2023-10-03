@@ -71,14 +71,6 @@ void Error_Handler(void);
 #define B_UP_EXTI_IRQn EXTI4_IRQn
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
-#define LCD_D7_Pin GPIO_PIN_7
-#define LCD_D7_GPIO_Port GPIOA
-#define LCD_D5_Pin GPIO_PIN_7
-#define LCD_D5_GPIO_Port GPIOC
-#define LCD_RS_Pin GPIO_PIN_9
-#define LCD_RS_GPIO_Port GPIOC
-#define LCD_D4_Pin GPIO_PIN_9
-#define LCD_D4_GPIO_Port GPIOA
 #define B_DOWN_Pin GPIO_PIN_10
 #define B_DOWN_GPIO_Port GPIOA
 #define B_DOWN_EXTI_IRQn EXTI15_10_IRQn
@@ -88,10 +80,6 @@ void Error_Handler(void);
 #define TCK_GPIO_Port GPIOA
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
-#define LCD_D6_Pin GPIO_PIN_6
-#define LCD_D6_GPIO_Port GPIOB
-#define LCD_E_Pin GPIO_PIN_9
-#define LCD_E_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

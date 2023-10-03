@@ -71,44 +71,44 @@
 
 void lcd_command(unsigned char command)
 {
-	HAL_GPIO_WritePin(GPIOC, LCD_RS_Pin, GPIO_PIN_RESET);	// Register Select (RS)line low (data sent will now be read as commands);
+	HAL_GPIO_WritePin(LCD_RS_GPIO_Port, LCD_RS_Pin, GPIO_PIN_RESET);	// Register Select (RS)line low (data sent will now be read as commands);
 
 // Put upper nibble (upper 4-bits) on data lines, command mode
 // DATALINE 7
     if ((command & 0x80) != 0)		// Select bit 7 of command, if HIGH set Data line 7 (D7) 
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_SET);
     }
     else				// else RESET D7
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_RESET);
+    	HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_RESET);
     }
 // DATALINE 6
     if ((command & 0x40) != 0)		// Select bit 6 of command, if HIGH set Data line 6 (D6) 
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_SET);
     }
     else				// else RESET D6
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_RESET);
+    	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_RESET);
     }
 // DATALINE 5
     if ((command & 0x20) != 0)		// Select bit 5 of command, if HIGH set Data line 5 (D5)
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_SET);
     }
     else				// else RESET D5
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_RESET);
+    	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_RESET);
     }
 // DATALINE 4
     if ((command & 0x10) != 0)		// Select bit 4 of command, if HIGH set Data line 4 (D4)
     {
-    	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_SET);
     }
     else				//  else RESET D4
     {
-    	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_RESET);
+    	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_RESET);
     }
 
     pulse_strobe ();			// Send data
@@ -116,38 +116,38 @@ void lcd_command(unsigned char command)
 // lower nibble to data lines
     if ((command & 0x08) != 0)		// Select bit 3 of command, if HIGH set Data line 7 (D7) 
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_SET);
 	}
 	else				// else RESET D7
 	{
-		HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_RESET);
 	}
 // DATALINE 6
     if ((command & 0x04) != 0)		// Select bit 2 of command, if HIGH set Data line 6 (D6)
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_SET);
     }
     else				// else RESET D6
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_RESET);
+    	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_RESET);
     }
     // DATALINE 5
     if ((command & 0x02) != 0)		// Select bit 1 of command, if HIGH set Data line 5 (D5)
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_SET);
     }
     else				// else RESET D5
     {
-    	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_RESET);
+    	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_RESET);
     }
     // DATALINE 4
     if ((command & 0x01) != 0)		// Select bit 0 of command, if HIGH set Data line 4 (D4)
     {
-    	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_SET);
+    	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_SET);
     }
     else				//  else RESET D4
     {
-    	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_RESET);
+    	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_RESET);
     }
 
     pulse_strobe();			// Send data
@@ -190,43 +190,43 @@ void init_LCD(void)
 
  void lcd_putchar(unsigned char character)
 {
-	HAL_GPIO_WritePin(GPIOC, LCD_RS_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(LCD_RS_GPIO_Port, LCD_RS_Pin, GPIO_PIN_SET);
 // Put upper nibble (upper 4-bits) on data lines, command mode
 	// DATALINE 7
 	    if ((character & 0x80) != 0)		// Select bit 7 of command, if HIGH set Data line 7 (D7)
 	    {
-	    	HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_SET);
+	    	HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_SET);
 	    }
 	    else				// else RESET D7
 	    {
-	    	HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_RESET);
+	    	HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_RESET);
 	    }
 	// DATALINE 6
 	    if ((character & 0x40) != 0)		// Select bit 6 of command, if HIGH set Data line 6 (D6)
 	    {
-	    	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_SET);
+	    	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_SET);
 	    }
 	    else				// else RESET D6
 	    {
-	    	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_RESET);
+	    	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_RESET);
 	    }
 	// DATALINE 5
 	    if ((character & 0x20) != 0)		// Select bit 5 of command, if HIGH set Data line 5 (D5)
 	    {
-	    	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_SET);
+	    	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_SET);
 	    }
 	    else				// else RESET D5
 	    {
-	    	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_RESET);
+	    	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_RESET);
 	    }
 	// DATALINE 4
 	    if ((character & 0x10) != 0)		// Select bit 4 of command, if HIGH set Data line 4 (D4)
 	    {
-	    	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_SET);
+	    	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_SET);
 	    }
 	    else				//  else RESET D4
 	    {
-	    	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_RESET);
+	    	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_RESET);
 	    }
 
         pulse_strobe ();		// Send data
@@ -234,38 +234,38 @@ void init_LCD(void)
 // lower nibble to data lines
         if ((character & 0x08) != 0)		// Select bit 3 of command, if HIGH set Data line 7 (D7)
         {
-        	HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_SET);
+        	HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_SET);
     	}
     	else				// else RESET D7
     	{
-    		HAL_GPIO_WritePin(GPIOB, LCD_D7_Pin, GPIO_PIN_RESET);
+    		HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, GPIO_PIN_RESET);
     	}
     // DATALINE 6
         if ((character & 0x04) != 0)		// Select bit 2 of command, if HIGH set Data line 6 (D6)
         {
-        	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_SET);
+        	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_SET);
         }
         else				// else RESET D6
         {
-        	HAL_GPIO_WritePin(GPIOB, LCD_D6_Pin, GPIO_PIN_RESET);
+        	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, GPIO_PIN_RESET);
         }
         // DATALINE 5
         if ((character & 0x02) != 0)		// Select bit 1 of command, if HIGH set Data line 5 (D5)
         {
-        	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_SET);
+        	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_SET);
         }
         else				// else RESET D5
         {
-        	HAL_GPIO_WritePin(GPIOB, LCD_D5_Pin, GPIO_PIN_RESET);
+        	HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, GPIO_PIN_RESET);
         }
         // DATALINE 4
         if ((character & 0x01) != 0)		// Select bit 0 of command, if HIGH set Data line 4 (D4)
         {
-        	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_SET);
+        	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_SET);
         }
         else				//  else RESET D4
         {
-        	HAL_GPIO_WritePin(GPIOC, LCD_D4_Pin, GPIO_PIN_RESET);
+        	HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, GPIO_PIN_RESET);
         }
 
         pulse_strobe();			// Send data
@@ -299,15 +299,15 @@ void pulse_strobe(void)
 {
     delay(20);				// Delay
 
-	HAL_GPIO_WritePin(GPIOC, LCD_E_Pin, GPIO_PIN_SET);		// pull E (PC15) HIGH
+	HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, GPIO_PIN_SET);		// pull E (PC15) HIGH
 
     delay(20);				// Delay
 
-	HAL_GPIO_WritePin(GPIOC, LCD_E_Pin, GPIO_PIN_RESET);	// Take EN LOW
+	HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, GPIO_PIN_RESET);	// Take EN LOW
 
     delay(20);				// Delay
 
-    HAL_GPIO_WritePin(GPIOC, LCD_E_Pin, GPIO_PIN_SET);		// Take EN HIGH
+    HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, GPIO_PIN_SET);		// Take EN HIGH
 }
 
 
