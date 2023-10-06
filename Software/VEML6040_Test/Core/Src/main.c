@@ -30,7 +30,6 @@
 #include "stdio.h"
 #include <stdbool.h>
 #include "VEML6040.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -40,38 +39,28 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
-#define VEML6040_ADDRESS 0x10 // Slave address of VEML6040 color sensor
-#define RED_DATA_REGISTER 0x08 // Register address for red data value
-#define GREEN_DATA_REGISTER 0x09 // Register address for green data value
-#define BLUE_DATA_REGISTER 0x0A // Register address for blue data value
-#define CONFIG_REGISTER 0x00 // Register address for configuration
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
-// Create an instance of the VEML6040 sensor
-VEML6040_HandleTypeDef veml6040;
+//
+//// Create an instance of the VEML6040 sensor
+//VEML6040_Handle veml6040;
 
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-  uint16_t redData, greenData, blueData;
-  uint8_t data[6]; // Array to store RGB data values
+
+uint16_t redValue, greenValue, blueValue, whiteValue;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
-//void VEML6040_Configuration(void);
-//void VEML6040_ReadRedData(uint16_t *redData);
-//void VEML6040_ReadRGBData(uint16_t *redData, uint16_t *greenData, uint16_t *blueData);
-
+void VEML6040_GetData(uint16_t *red, uint16_t *green, uint16_t *blue, uint16_t *white);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -99,8 +88,6 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -123,51 +110,27 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_TIM16_Init();
-  MX_I2C3_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  printf("Configuring device");
-  // Configure VEML6040 color sensor
-//  VEML6040_Configuration();
+  uint16_t red, green, blue, white;
 
-
-  // Check if VEML6040 color sensor is ready
-  while (HAL_I2C_IsDeviceReady(&hi2c3, VEML6040_ADDRESS, 10, HAL_MAX_DELAY) != HAL_OK);
-  printf("Device ready!");
+  printf("Configuring device\r\n");
+  VEML6040_SetConfiguration(&hi2c1, VEML6040_IT_320MS | VEML6040_AF_AUTO | VEML6040_SD_ENABLE);
+  printf("Device ready!\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	    // Get sensor data
+	    VEML6040_GetData(&red, &green, &blue, &white);
 
-	  // Check if the sensor exists
-	  if (veml6040.sensorExists) {
-		  printf("YAY");
-		  // Set the sensor configuration (e.g., integration time)
-		  VEML6040_setConfiguration(VEML6040_IT_80MS);
+	    // Print the sensor data over UART
+	    printf("RED: %d GREEN: %d BLUE: %d WHITE: %d\r\n", red, green, blue, white);
 
-		  while (1) {
-			  // Read sensor data
-			  uint16_t redValue = VEML6040_getRed();
-			  uint16_t greenValue = VEML6040_getGreen();
-			  uint16_t blueValue = VEML6040_getBlue();
-			  uint16_t whiteValue = VEML6040_getWhite();
-			  float ambientLight = VEML6040_getAmbientLight();
-//			  uint16_t cctValue = VEML6040_getCCT();
 
-			  // Use the sensor data as needed
-			  printf("R: %d\r\n", redValue);
-			  printf("G: %d\r\n", greenValue);
-			  printf("B: %d\r\n", blueValue);
-			  printf("W: %d\r\n", whiteValue);
-			  printf("Ambient: %f\r\n", ambientLight);
-//			  printf("CCT: %d\r\n", cctValue);
-
-			  // Add a delay or use an interrupt-driven approach
-			  HAL_Delay(1000);
-		  }
-	  }
-
+	  HAL_Delay(1000);
 	  /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -225,38 +188,12 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-//void VEML6040_ReadRGBData(uint16_t *redData, uint16_t *greenData, uint16_t *blueData)
-//{
-//  // Send read command to VEML6040 color sensor
-//  HAL_I2C_Mem_Read(&hi2c3, VEML6040_ADDRESS, RED_DATA_REGISTER, I2C_MEMADD_SIZE_8BIT, data, 6, HAL_MAX_DELAY);
-//
-//  // Combine MSB and LSB to get 16-bit red data value
-//  *redData = (data[1] << 8) | data[0];
-//
-//  // Combine MSB and LSB to get 16-bit green data value
-//  *greenData = (data[3] << 8) | data[2];
-//
-//  // Combine MSB and LSB to get 16-bit blue data value
-//  *blueData = (data[5] << 8) | data[4];
-//}
-
-//void VEML6040_Configuration(void)
-//{
-//  uint16_t configData = 0x0000; // Configuration data value
-//
-//  // Set integration time to 100ms (bits 11:6)
-//  configData |= (0x08 << 6);
-//
-//  // Set gain to 1/8 (bits 5:4)
-//  configData |= (0x01 << 4);
-//
-//  // Set power saving mode to normal (bits 3:0)
-//  configData |= 0x00;
-//
-//    // Send write command to VEML6040 color sensor
-//    HAL_I2C_Mem_Write(&hi2c3, VEML6040_ADDRESS, CONFIG_REGISTER, I2C_MEMADD_SIZE_8BIT, (uint8_t *)&configData, 2, HAL_MAX_DELAY);
-//}
-
+void VEML6040_GetData(uint16_t *red, uint16_t *green, uint16_t *blue, uint16_t *white) {
+  *red = VEML6040_GetRed(&hi2c1);
+  *green = VEML6040_GetGreen(&hi2c1);
+  *blue = VEML6040_GetBlue(&hi2c1);
+  *white = VEML6040_GetWhite(&hi2c1);
+}
 /* USER CODE END 4 */
 
 /**

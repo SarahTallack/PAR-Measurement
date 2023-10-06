@@ -30,7 +30,7 @@
 #include "stdio.h"
 #include "math.h"
 
-//#include "lcd_stm32f0.h"
+#include "lcd_stm32f0.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -83,9 +83,9 @@ uint32_t *pBuff;
 int i, j, k;
 uint16_t stepSize;
 
-uint8_t COLOUR = 0; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
-int brightness;
-
+uint8_t COLOUR = 2; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
+float brightness = 22.5;
+uint32_t lastDebounceTime = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -93,20 +93,15 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
 void rainbow(void);
-void red(void);
-void green(void);
-void blue(void);
-void white(void);
 void rgb(uint8_t r, uint8_t g, uint8_t b);
-void setBrightness(uint8_t level);
-void Set_Brightness(int brightness);
+void Set_Brightness(float brightness);
 
 void sweep(uint8_t r, uint8_t g, uint8_t b);
 
 void WS2812_send(void);
 
-//void helloWorld();
-
+void LCD_Print();
+char buff[16];
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 /* USER CODE END PFP */
 
@@ -172,30 +167,41 @@ int main(void)
 
   k = 0;
   stepSize = 4;
-  brightness = 20;
 
-  printf("look lights");
-//  helloWorld();
-
+  init_LCD();
+  LCD_Print();
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 //	rainbow();
+
 	switch(COLOUR)
 	{
 	case(1):
-			rgb(255, 0, 0);
+			rgb(255, 0, 0); //red
 			break;
 	case(2):
-			rgb(0, 255, 0);
+			rgb(255, 255, 0); //yellow
 			break;
 	case(3):
-			rgb(0, 0, 255);
+			rgb(0, 255, 0); //green
 			break;
 	case(4):
-			rgb(255, 255, 255);
+			rgb(0, 255, 255); //cyan
+			break;
+	case(5):
+			rgb(0, 0, 255); //blue
+			break;
+	case(6):
+			rgb(255, 0, 255); //magenta
+			break;
+	case(7):
+			rgb(255, 255, 255); //white
+			break;
+	case(8):
+			rainbow();
 			break;
 	default:
 			rgb(R, G, B);
@@ -260,9 +266,41 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void LCD_Print(){
+    lcd_command(CLEAR);
 
+    int b_percent = (brightness*100)/45;
+    sprintf(buff, "BRIGHTNESS: %d", b_percent);
+    lcd_putstring(buff);
 
-void Set_Brightness(int brightness)
+    lcd_command(LINE_TWO); //1 (red), 2 (green), 3 (blue), 4 (white), or 5 (rainbow), else 0 (RGB)
+	switch(COLOUR)
+	{
+	case(1):
+			lcd_putstring("COLOUR: RED"); //red
+			break;
+	case(2):
+			lcd_putstring("COLOUR: YELLOW");
+			break;
+	case(3):
+			lcd_putstring("COLOUR: GREEN");
+			break;
+	case(4):
+			lcd_putstring("COLOUR: CYAN");
+			break;
+	case(5):
+			lcd_putstring("COLOUR: BLUE");
+			break;
+	case(6):
+			lcd_putstring("COLOUR: MAGENTA");
+			break;
+	case(7):
+			lcd_putstring("COLOUR: WHITE");
+			break;
+	}
+}
+
+void Set_Brightness(float brightness)
 {
 	if (brightness > 45) brightness = 45;
 	float angle = 90-brightness;  // in degrees
@@ -375,55 +413,50 @@ void WS2812_send(void)
     }
     dmaBuffer[DMA_BUFF_SIZE - 1] = 0; // last element must be 0!
 
-//    HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_1, dmaBuffer, DMA_BUFF_SIZE);
-//    HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_2, dmaBuffer, DMA_BUFF_SIZE);
     HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_3, dmaBuffer, DMA_BUFF_SIZE);
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	uint8_t start = HAL_GetTick();
-	while((start+20)>HAL_GetTick());
+	uint32_t currentTime = HAL_GetTick();
 
-	if (GPIO_Pin == B_DOWN_Pin)
-	{
-		printf("Another button yay\r\n");
-		if (brightness == 0)
+	if (currentTime - lastDebounceTime >= 100){
+		if (GPIO_Pin == B_DOWN_Pin)
 		{
-			brightness = brightness;
+			if (brightness == 0)
+			{
+				brightness = brightness;
+			}
+			else
+			{
+				brightness = brightness - 4.5;
+			}
 		}
-		else
+		else if (GPIO_Pin == B_UP_Pin)
 		{
-			brightness = brightness - 5;
+			if (brightness == 45)
+			{
+				brightness = brightness;
+			}
+			else
+			{
+				brightness = brightness + 4.5;
+			}
 		}
-	}
-	else if (GPIO_Pin == B_UP_Pin)
-	{
-		printf("Another another button yay\r\n");
-		if (brightness == 45)
+		else if (GPIO_Pin == B1_Pin)
 		{
-			brightness = brightness;
+			if (COLOUR == 7)
+			{
+				COLOUR = 1;
+			}
+			else
+			{
+				COLOUR = COLOUR + 1;
+			}
+			HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		}
-		else
-		{
-			brightness = brightness + 5;
-		}
-	}
-	else if (GPIO_Pin == B1_Pin)
-	{
-		if (COLOUR == 4)
-		{
-			COLOUR = 0;
-		}
-		else
-		{
-			COLOUR = COLOUR + 1;
-		}
-		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-	}
-	else
-	{
-		printf("nothing\r\n");
+		LCD_Print();
+		lastDebounceTime = currentTime;
 	}
 }
 /* USER CODE END 4 */

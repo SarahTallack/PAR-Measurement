@@ -1,0 +1,7 @@
+../Core/Src/VEML6040.c:7:17:VEML6040_Read	1
+../Core/Src/VEML6040.c:13:6:VEML6040_Init	1
+../Core/Src/VEML6040.c:17:6:VEML6040_SetConfiguration	1
+../Core/Src/VEML6040.c:22:10:VEML6040_GetRed	1
+../Core/Src/VEML6040.c:26:10:VEML6040_GetGreen	1
+../Core/Src/VEML6040.c:30:10:VEML6040_GetBlue	1
+../Core/Src/VEML6040.c:34:10:VEML6040_GetWhite	1

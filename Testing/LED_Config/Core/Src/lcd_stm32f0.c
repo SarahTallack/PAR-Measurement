@@ -167,7 +167,7 @@ void lcd_command(unsigned char command)
 
 void init_LCD(void)
 {
-    delay(30000);			// Allow the LCD some power up time (~30ms)
+    HAL_Delay(100);			// Allow the LCD some power up time (~30ms)
 
     lcd_command(POWER_UP);		// Power up initialization for the lcd
     lcd_command(FOURBIT_MODE);		// Set LCD into 4 bit mode
@@ -297,15 +297,18 @@ void lcd_putstring(char *instring)
 
 void pulse_strobe(void)
 {
-    delay(20);				// Delay
+//    HAL_Delay(DELAY);				// Delay
+	delay(DELAY);
 
 	HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, GPIO_PIN_SET);		// pull E (PC15) HIGH
 
-    delay(20);				// Delay
+//	HAL_Delay(DELAY);				// Delay
+	delay(DELAY);
 
 	HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, GPIO_PIN_RESET);	// Take EN LOW
 
-    delay(20);				// Delay
+//	HAL_Delay(DELAY);				// Delay
+	delay(DELAY);
 
     HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, GPIO_PIN_SET);		// Take EN HIGH
 }

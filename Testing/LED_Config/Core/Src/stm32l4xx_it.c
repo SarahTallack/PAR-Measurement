@@ -27,7 +27,6 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
 
-extern int brightness;
 
 /* USER CODE END TD */
 
@@ -201,6 +200,20 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles EXTI line0 interrupt.
+  */
+void EXTI0_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI0_IRQn 0 */
+
+  /* USER CODE END EXTI0_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(B_DOWN_Pin);
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
+
+  /* USER CODE END EXTI0_IRQn 1 */
+}
+
+/**
   * @brief This function handles DMA1 channel1 global interrupt.
   */
 void DMA1_Channel1_IRQHandler(void)
@@ -220,27 +233,6 @@ void DMA1_Channel1_IRQHandler(void)
 void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
-//  uint8_t start = HAL_GetTick();
-//  while((start+20)>HAL_GetTick());
-
-//  if (!B_DOWN_Pin)
-//  {
-//	  printf("Another button yay");
-//	  if (brightness == 0)
-//	  {
-//		  brightness = brightness;
-//	  }
-//	  else
-//	  {
-//		  brightness = brightness - 5;
-//	  }
-//  }
-
-//  if (B1_Pin)
-//  {
-//	  printf("Button yay");
-//	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-//  }
 
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(B_UP_Pin);

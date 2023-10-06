@@ -3,4 +3,4 @@
 ../Core/Src/lcd_stm32f0.c:191:7:lcd_putchar	9
 ../Core/Src/lcd_stm32f0.c:280:6:lcd_putstring	2
 ../Core/Src/lcd_stm32f0.c:298:6:pulse_strobe	1
-../Core/Src/lcd_stm32f0.c:320:6:delay	2
+../Core/Src/lcd_stm32f0.c:323:6:delay	2

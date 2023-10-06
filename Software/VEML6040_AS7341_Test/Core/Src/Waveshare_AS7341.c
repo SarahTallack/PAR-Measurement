@@ -77,7 +77,7 @@ void AS7341_Enable(int flag)
     data = data & (~1);
     }
 	AS7341_Write_Byte(AS7341_ENABLE,data);
-	printf("Initialization is complete !\r\n");
+//	printf("Initialization is complete !\r\n");
     AS7341_Write_Byte(0x00, 0x30);
 }
 

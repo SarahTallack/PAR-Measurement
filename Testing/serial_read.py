@@ -2,7 +2,7 @@ import serial
 import time
 
 timestamp = time.strftime('%M') + "_AS7341.csv"
-f = open(timestamp, "w+")
+f = open("RED_60.csv", "w+")
 
 
 def readserial(comport, baudrate, timestamp=False):
@@ -15,7 +15,7 @@ def readserial(comport, baudrate, timestamp=False):
     #     f.write(f'Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR\n')
 
     i = 0
-    while i<20:
+    while i<60:
 
         data = ser.readline().decode().strip()
 
@@ -34,6 +34,6 @@ def readserial(comport, baudrate, timestamp=False):
 #     f = open(filename, "w+")
 
 
-readserial('COM3', 115200, True)
+readserial('COM4', 115200, True)
 f.close()
 print("done")

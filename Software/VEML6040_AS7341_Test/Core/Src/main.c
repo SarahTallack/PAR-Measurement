@@ -69,14 +69,20 @@ uint16_t ASTEP;
 
 uint16_t redValue, greenValue, blueValue, whiteValue;
 
+uint16_t rgbw_data[4];
+uint32_t lastDebounceTime = 0;
+
 VEML6040_Handle veml6040;
+
+uint32_t t_int = 40;
+int i = 0;
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void VEML6040_Read_RGBW(uint16_t *rgbw_data);
 void VEML6040_Start();
 void AS7341_Start();
 
@@ -143,19 +149,39 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  printf("Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR,t_int,t_meas,VEML_R,VEML_G,VEML_B,VEML_W\r\n");
+//  printf("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\r\n");
+//  printf("Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR,VEML_R,VEML_G,VEML_B,VEML_W,t_int\r\n");
   while (1)
   {
+//	  AS7341_ClearInterrupt();// Interrupt must be cleared
 	  AS7341_startMeasure(eF1F4ClearNIR);
 	  AS7341_startMeasure(eF5F8ClearNIR);
+	  VEML_data = VEML_GetData(&hi2c1);
 	  while(!AS7341_MeasureComplete()); // wait for measurement to finish
 	  data1 = AS7341_ReadSpectralDataOne();
 	  data2 =AS7341_ReadSpectralDataTwo();
-	  printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d \r\n", data1.channel1, data1.channel2, data1.channel3, data1.channel4, data2.channel5, data2.channel6, data2.channel7, data2.channel8, data2.CLEAR, data2.NIR, t_int, t_meas);
+	  printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,", data1.channel1, data1.channel2, data1.channel3, data1.channel4, data2.channel5, data2.channel6, data2.channel7, data2.channel8, data2.CLEAR, data2.NIR);
 
-	  VEML_data = VEML_GetData(&veml6040);
-	  printf("%d,%d,%d,%d", VEML_data.r, VEML_data.g, VEML_data.b, VEML_data.w);
-
+//	  VEML_data = VEML_GetData(&hi2c1);
+	  printf("%d,%d,%d,%d,%ld\r\n", VEML_data.r, VEML_data.g, VEML_data.b, VEML_data.w, t_int);
+	  HAL_Delay(50);
+	  i = i + 1;
+	  if (i == 10)
+	  {
+		  //change integration time
+		  if (t_int == 1280)
+		  {
+			  t_int = 40;
+			  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		  }
+		  else
+		  {
+			  t_int = t_int*2;
+		  }
+		  VEML6040_Start();
+		  AS7341_Start();
+		  i = 0;
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -220,12 +246,33 @@ info：		Set the I2C channel, and set integration time
 ******************************************************************************/
 void VEML6040_Start()
 {
-	  printf("Configuring VEML6040");
+	  uint8_t VEML6040_IT = VEML6040_IT_160MS;
+//	  printf("Configuring VEML6040");
 	  // Initialize the VEML6040 sensor
-	  VEML6040_Init(&veml6040, &hi2c1);
+		switch(t_int)
+		{
+		case 40:
+			VEML6040_IT = VEML6040_IT_40MS;
+			break;
+		case 80:
+			VEML6040_IT = VEML6040_IT_80MS;
+			break;
+		case 160:
+			VEML6040_IT = VEML6040_IT_160MS;
+			break;
+		case 320:
+			VEML6040_IT = VEML6040_IT_320MS;
+			break;
+		case 640:
+			VEML6040_IT = VEML6040_IT_640MS;
+			break;
+		case 1280:
+			VEML6040_IT = VEML6040_IT_1280MS;
+			break;
+		}
+	  VEML6040_SetConfiguration(&hi2c1, VEML6040_IT | VEML6040_AF_AUTO | VEML6040_SD_ENABLE);
 	  // Set the sensor configuration (e.g., VEML6040_IT_160MS)
-	  VEML6040_SetConfiguration(&veml6040, VEML6040_IT);
-	  printf("Configuring VEML6040 done\r\n ------------------------\r\n");
+//	  printf("Configuring VEML6040 done\r\n ------------------------\r\n");
 }
 
 /******************************************************************************
@@ -235,7 +282,7 @@ info：		Set the sensing mode, enable or disable interrupts, set integration
 ******************************************************************************/
 void AS7341_Start()
 {
-	printf("Configuring AS7341");
+//	printf("Configuring AS7341");
 	DEV_ModuleInit();
 
 	AS7341_Init(MODE);
@@ -311,7 +358,7 @@ void AS7341_Start()
 
 	AS7341_ATIME_config(ATIME);
 	AS7341_ASTEP_config(ASTEP);
-	printf("Configuring AS7341 done\r\n ------------------------\r\n");
+//	printf("Configuring AS7341 done\r\n ------------------------\r\n");
 }
 
 /******************************************************************************
@@ -323,28 +370,51 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   // Check which version of the timer triggered this callback and toggle LED
   if (htim == &htim16 )
   {
-	  HAL_GPIO_TogglePin(GPIOA, AS7341_GPIO_Pin);
-	  HAL_GPIO_TogglePin(GPIOA, LD2_Pin);
+	  HAL_GPIO_TogglePin(AS7341_GPIO_GPIO_Port, AS7341_GPIO_Pin);
+	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
   }
 
-//  switch(t_meas)
-//    {
-//    case(100):
-//		TIM16->ARR = 100-1;
-//    	  break;
-//    case(500):
-//		TIM16->ARR = 500-1;
-//    	  break;
-//    case(1000):
-//		TIM16->ARR = 1000-1;
-//    	  break;
-//    case(5000):
-//		TIM16->ARR = 5000-1;
-//    	  break;
-//    case(10000):
-//		TIM16->ARR = 10000-1;
-//    	  break;
-//    }
+  switch(t_meas)
+    {
+    case(100):
+		TIM16->ARR = 100-1;
+    	  break;
+    case(500):
+		TIM16->ARR = 500-1;
+    	  break;
+    case(1000):
+		TIM16->ARR = 1000-1;
+    	  break;
+    case(5000):
+		TIM16->ARR = 5000-1;
+    	  break;
+    case(10000):
+		TIM16->ARR = 10000-1;
+    	  break;
+    }
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	uint32_t currentTime = HAL_GetTick();
+
+	if (currentTime - lastDebounceTime >= 100){
+		if (GPIO_Pin == B1_Pin)
+		{
+			if (t_int == 1280)
+			{
+				t_int = 40;
+			}
+			else
+			{
+				t_int = t_int*2;
+			}
+			VEML6040_Start();
+			AS7341_Start();
+			HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		}
+		lastDebounceTime = currentTime;
+	}
 }
 
 /* USER CODE END 4 */

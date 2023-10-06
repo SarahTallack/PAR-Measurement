@@ -50,17 +50,14 @@ typedef struct{
   uint16_t w;/**<white channel data>*/
 }rgb_t;
 
-void VEML6040_Init(VEML6040_Handle *handle, I2C_HandleTypeDef *hi2c);
-HAL_StatusTypeDef VEML6040_Begin(VEML6040_Handle *handle);
-void VEML6040_SetConfiguration(VEML6040_Handle *handle, uint8_t configuration);
-uint16_t VEML6040_GetRed(VEML6040_Handle *handle);
-uint16_t VEML6040_GetGreen(VEML6040_Handle *handle);
-uint16_t VEML6040_GetBlue(VEML6040_Handle *handle);
-uint16_t VEML6040_GetWhite(VEML6040_Handle *handle);
-
-rgb_t VEML_GetData(VEML6040_Handle *handle);
-
-float VEML6040_GetAmbientLight(VEML6040_Handle *handle);
-uint16_t VEML6040_GetCCT(VEML6040_Handle *handle, float offset);
+void VEML6040_Init(I2C_HandleTypeDef *hi2c);
+void VEML6040_SetConfiguration(I2C_HandleTypeDef *hi2c, uint8_t config);
+uint16_t VEML6040_GetRed(I2C_HandleTypeDef *hi2c);
+uint16_t VEML6040_GetGreen(I2C_HandleTypeDef *hi2c);
+uint16_t VEML6040_GetBlue(I2C_HandleTypeDef *hi2c);
+uint16_t VEML6040_GetWhite(I2C_HandleTypeDef *hi2c);
+rgb_t VEML_GetData(I2C_HandleTypeDef *hi2c);
+//uint16_t VEML6040_GetCCT(I2C_HandleTypeDef *hi2c, float offset);
+//float VEML6040_GetAmbientLight(I2C_HandleTypeDef *hi2c);
 
 #endif
