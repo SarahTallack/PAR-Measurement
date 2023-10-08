@@ -109,8 +109,8 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USART2_UART_Init();
-  MX_I2C1_Init();
   MX_TIM16_Init();
+  MX_I2C3_Init();
   /* USER CODE BEGIN 2 */
 
   printf("AS7341 Spectral Sensor Code...\r\n");

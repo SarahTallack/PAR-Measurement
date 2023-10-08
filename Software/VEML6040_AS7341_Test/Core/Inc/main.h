@@ -59,7 +59,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
-#define B1_EXTI_IRQn EXTI15_10_IRQn
 #define AS7341_SCL_Pin GPIO_PIN_0
 #define AS7341_SCL_GPIO_Port GPIOC
 #define AS7341_SDA_Pin GPIO_PIN_1

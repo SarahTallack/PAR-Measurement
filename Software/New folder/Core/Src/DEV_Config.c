@@ -96,7 +96,7 @@ void I2C_Write_Byte(uint8_t Cmd, uint8_t value)
 #if DEV_I2C 
 	UBYTE Buf[1] = {0};
 	Buf[0] = value;
-	HAL_I2C_Mem_Write(&hi2c1, I2C_ADDR, Cmd, I2C_MEMADD_SIZE_8BIT, Buf, 1, 0x20);
+	HAL_I2C_Mem_Write(&hi2c3, I2C_ADDR, Cmd, I2C_MEMADD_SIZE_8BIT, Buf, 1, 0x20);
 #endif
 }
 
@@ -104,7 +104,7 @@ int I2C_Read_Byte(uint8_t Cmd)
 {
 #if DEV_I2C 
 	UBYTE Buf[1]={0};
-	HAL_I2C_Mem_Read(&hi2c1, I2C_ADDR+1, Cmd, I2C_MEMADD_SIZE_8BIT, Buf, 1, 0x20);
+	HAL_I2C_Mem_Read(&hi2c3, I2C_ADDR+1, Cmd, I2C_MEMADD_SIZE_8BIT, Buf, 1, 0x20);
 	return Buf[0];
 #endif
 }
@@ -113,7 +113,7 @@ int I2C_Read_Word(uint8_t Cmd)
 {
 #if DEV_I2C 
 	UBYTE Buf[2]={0, 0};
-	HAL_I2C_Mem_Read(&hi2c1, I2C_ADDR+1, Cmd, I2C_MEMADD_SIZE_8BIT, Buf, 2, 0x20);
+	HAL_I2C_Mem_Read(&hi2c3, I2C_ADDR+1, Cmd, I2C_MEMADD_SIZE_8BIT, Buf, 2, 0x20);
 	return ((Buf[1] << 8) | (Buf[0] & 0xff));
 #endif
 }

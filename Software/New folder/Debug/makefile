@@ -60,8 +60,8 @@ all: main-build
 main-build: AS7341_Test.elf secondary-outputs
 
 # Tool invocations
-AS7341_Test.elf AS7341_Test.map: $(OBJS) $(USER_OBJS) C:\Users\sarah\Documents\1.\ UNIVERSITY\University\EEE4022S\PAR-Measurement\Software\New\ folder\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "AS7341_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sarah\Documents\1. UNIVERSITY\University\EEE4022S\PAR-Measurement\Software\New folder\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AS7341_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+AS7341_Test.elf AS7341_Test.map: $(OBJS) $(USER_OBJS) C:\Users\sarah\Documents\1.\ University\5th\ Year\EEE4022S\PAR-Measurement\Software\New\ folder\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "AS7341_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sarah\Documents\1. University\5th Year\EEE4022S\PAR-Measurement\Software\New folder\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AS7341_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

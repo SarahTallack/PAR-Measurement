@@ -60,8 +60,8 @@ all: main-build
 main-build: VEML6040_AS7341_Test.elf secondary-outputs
 
 # Tool invocations
-VEML6040_AS7341_Test.elf VEML6040_AS7341_Test.map: $(OBJS) $(USER_OBJS) C:\Users\sarah\Documents\1.\ UNIVERSITY\University\EEE4022S\PAR-Measurement\Software\VEML6040_AS7341_Test\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "VEML6040_AS7341_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sarah\Documents\1. UNIVERSITY\University\EEE4022S\PAR-Measurement\Software\VEML6040_AS7341_Test\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="VEML6040_AS7341_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+VEML6040_AS7341_Test.elf VEML6040_AS7341_Test.map: $(OBJS) $(USER_OBJS) C:\Users\sarah\Documents\1.\ University\5th\ Year\EEE4022S\PAR-Measurement\Software\VEML6040_AS7341_Test\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "VEML6040_AS7341_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\sarah\Documents\1. University\5th Year\EEE4022S\PAR-Measurement\Software\VEML6040_AS7341_Test\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="VEML6040_AS7341_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
