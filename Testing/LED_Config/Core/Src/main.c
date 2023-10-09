@@ -60,7 +60,7 @@ typedef union
 
 #define SWEEP 0
 #define PI 3.14159265
-
+#define MODE 1
 //#define COLOUR 0 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 
 #define R 255
@@ -83,9 +83,11 @@ uint32_t *pBuff;
 int i, j, k;
 uint16_t stepSize;
 
-uint8_t COLOUR = 2; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
+uint8_t COLOUR = 1; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 float brightness = 22.5;
 uint32_t lastDebounceTime = 0;
+
+uint8_t pos = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -348,8 +350,23 @@ info：		Loop through all pixel values and set to RGB colour.
 ******************************************************************************/
 void rgb(uint8_t r, uint8_t g, uint8_t b)
 {
-#if SWEEP
-	sweep(r, g, b);
+#if MODE
+	for (i = 0; i < NUM_PIXELS; i++)
+	{
+		if (i == 4*pos)
+		{
+			pixel[i].color.r = r;
+			pixel[i].color.g = g;
+			pixel[i].color.b = b;
+		}
+		else
+		{
+			pixel[i].color.r = 0;
+			pixel[i].color.g = 0;
+			pixel[i].color.b = 0;
+		}
+
+	}
 #else
 	for (i = 0; i < NUM_PIXELS; i++)
 	{
@@ -434,14 +451,24 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		}
 		else if (GPIO_Pin == B_UP_Pin)
 		{
-			if (brightness == 45)
+			switch(MODE)
 			{
-				brightness = brightness;
+			case(0):
+					if (brightness == 45)
+					{
+						brightness = brightness;
+					}
+					else
+					{
+						brightness = brightness + 4.5;
+					}
+					break;
+			case(1):
+					pos++;
+					if (pos == 3) pos = 0;
+					break;
 			}
-			else
-			{
-				brightness = brightness + 4.5;
-			}
+
 		}
 		else if (GPIO_Pin == B1_Pin)
 		{

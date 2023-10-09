@@ -4,6 +4,6 @@
 ../Core/Src/main.c:235:6:VEML6040_Start	11
 ../Core/Src/main.c:271:6:AS7341_Start	27
 ../Core/Src/main.c:356:6:HAL_TIM_PeriodElapsedCallback	2
-../Core/Src/main.c:385:6:start_meas	3
-../Core/Src/main.c:415:6:HAL_GPIO_EXTI_Callback	4
-../Core/Src/main.c:444:6:Error_Handler	1
+../Core/Src/main.c:385:6:start_meas	2
+../Core/Src/main.c:432:6:HAL_GPIO_EXTI_Callback	4
+../Core/Src/main.c:461:6:Error_Handler	1
