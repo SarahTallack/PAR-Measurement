@@ -60,7 +60,7 @@ typedef union
 
 #define SWEEP 0
 #define PI 3.14159265
-#define MODE 1
+#define MODE 0
 //#define COLOUR 0 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 
 #define R 255
@@ -83,8 +83,8 @@ uint32_t *pBuff;
 int i, j, k;
 uint16_t stepSize;
 
-uint8_t COLOUR = 1; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
-float brightness = 22.5;
+uint8_t COLOUR = 7; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
+float brightness = 4.5;
 uint32_t lastDebounceTime = 0;
 
 uint8_t pos = 0;
@@ -206,7 +206,7 @@ int main(void)
 			rainbow();
 			break;
 	default:
-			rgb(R, G, B);
+			rgb(20, 20, 20);
 			break;
 	}
 
@@ -297,7 +297,8 @@ void LCD_Print(){
 			lcd_putstring("COLOUR: MAGENTA");
 			break;
 	case(7):
-			lcd_putstring("COLOUR: WHITE");
+			sprintf(buff, "COLOUR: WHITE %d", (pos+1));
+			lcd_putstring(buff);
 			break;
 	}
 }
@@ -353,7 +354,7 @@ void rgb(uint8_t r, uint8_t g, uint8_t b)
 #if MODE
 	for (i = 0; i < NUM_PIXELS; i++)
 	{
-		if (i == 4*pos)
+		if (i == pos)
 		{
 			pixel[i].color.r = r;
 			pixel[i].color.g = g;
@@ -440,20 +441,29 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if (currentTime - lastDebounceTime >= 100){
 		if (GPIO_Pin == B_DOWN_Pin)
 		{
-			if (brightness == 0)
+			switch(MODE)
 			{
-				brightness = brightness;
-			}
-			else
-			{
-				brightness = brightness - 4.5;
+			default:
+					if (brightness == 0)
+					{
+						brightness = brightness;
+					}
+					else
+					{
+						brightness = brightness - 4.5;
+					}
+					break;
+			case(2):
+					pos = pos + 1;
+					if (pos > 8) pos = 0;
+					break;
 			}
 		}
 		else if (GPIO_Pin == B_UP_Pin)
 		{
 			switch(MODE)
 			{
-			case(0):
+			default:
 					if (brightness == 45)
 					{
 						brightness = brightness;

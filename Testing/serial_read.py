@@ -1,7 +1,15 @@
 import serial
 import time
+import winsound
 
 timestamp = time.strftime('%M') + "_AS7341.csv"
+
+
+# Set frequency to 2000 Hertz
+frequency = 2000
+# Set duration to 1500 milliseconds (1.5 seconds)
+duration = 750
+winsound.Beep(frequency, duration)
 # f = open("YELLOW_10.csv", "w+")
 
 # colour = ["RED", "YELLOW", "GREEN", "CYAN", "BLUE", "MAGENTA", "WHITE"]
@@ -17,7 +25,7 @@ def readserial(comport, baudrate, timestamp=False):
     #     f.write(f'Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR\n')
 
     i = 0
-    while i<20:
+    while i<60:
 
         data = ser.readline().decode().strip()
 
@@ -43,41 +51,44 @@ colour_basic = ["RED", "GREEN", "BLUE", "WHITE"]
 # TEST 1
 # for col in colour:
 #     print(col)
-#     for brightness in range(10):
-#         filename = col + "_" + str((brightness+1)*10) +".csv"
-#         print(filename)
-#         f = open(filename, "w+")
-#         readserial('COM7', 115200, False)
-#         f.close()
+    # for brightness in range(1):
+    #     filename = col + "_" + str((brightness+1)*10) +".csv"
+    #     print(filename)
+    #     f = open(filename, "w+")
+    #     readserial('COM7', 115200, False)
+    #     f.close()
 
 # TEST 2
-# for col in colour_basic:
-#     print(col)
-#     for brightness in range(10):
-#         filename = "WATER_" + col + "_" + str((brightness+1)*10) +".csv"
-#         print(filename)
-#         f = open(filename, "w+")
-#         readserial('COM7', 115200, False)
-#         f.close()
-
-# TEST 3
-for r in range(3, 0, -1):
-    for c in range(3, 0, -1):
-        filename = "WHITE_50_R" + str(r) + "_C" + str(c) +".csv"
-        print(filename)
-        f = open(filename, "w+")
-        readserial('COM7', 115200, False)
-        f.close()
-
-# TEST 1
-for col in colour:
+for col in colour_basic:
     print(col)
     for brightness in range(10):
-        filename = col + "_" + str((brightness+1)*10) +".csv"
+        filename = "ICE_" + col + "_" + str((brightness+1)*10) +".csv"
         print(filename)
         f = open(filename, "w+")
         readserial('COM7', 115200, False)
         f.close()
+        # Make beep sound on Windows
+        winsound.Beep(frequency, duration) 
+
+# TEST 3
+# for r in range(2):
+#     filename = "WHITE_100_Further_R" + str(r+1) + ".csv"
+#     print(filename)
+#     f = open(filename, "w+")
+#     readserial('COM7', 115200, False)
+#     f.close()
+#     # Make beep sound on Windows
+#     winsound.Beep(frequency, duration)
+
+# TEST 4
+# for brightness in range(1):
+#     filename = "WHITE_100_" + "H6" + ".csv"
+#     print(filename)
+#     f = open(filename, "w+")
+#     readserial('COM7', 115200, False)
+#     f.close()
+#     # Make beep sound on Windows
+#     winsound.Beep(frequency, duration)
 
 # readserial('COM7', 115200, False)
 # f.close()
