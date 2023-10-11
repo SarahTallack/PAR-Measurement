@@ -62,7 +62,7 @@ colour_basic = ["RED", "GREEN", "BLUE", "WHITE"]
 for col in colour_basic:
     print(col)
     for brightness in range(10):
-        filename = "ICE_" + col + "_" + str((brightness+1)*10) +".csv"
+        filename = "WATER_" + col + "_" + str((brightness+1)*10) +".csv"
         print(filename)
         f = open(filename, "w+")
         readserial('COM7', 115200, False)
