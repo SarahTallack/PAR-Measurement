@@ -60,7 +60,7 @@ typedef union
 
 #define SWEEP 0
 #define PI 3.14159265
-#define MODE 0
+#define MODE 2
 //#define COLOUR 0 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 
 #define R 255
@@ -87,7 +87,7 @@ uint8_t COLOUR = 7; //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 float brightness = 4.5;
 uint32_t lastDebounceTime = 0;
 
-uint8_t pos = 0;
+uint8_t pos = 4;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -360,6 +360,18 @@ void rgb(uint8_t r, uint8_t g, uint8_t b)
 			pixel[i].color.g = g;
 			pixel[i].color.b = b;
 		}
+//		else if (i == pos - 1)
+//		{
+//			pixel[i].color.r = r;
+//			pixel[i].color.g = g;
+//			pixel[i].color.b = b;
+//		}
+//		else if (i == pos + 1)
+//		{
+//			pixel[i].color.r = r;
+//			pixel[i].color.g = g;
+//			pixel[i].color.b = b;
+//		}
 		else
 		{
 			pixel[i].color.r = 0;

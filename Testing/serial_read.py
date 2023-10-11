@@ -59,16 +59,16 @@ colour_basic = ["RED", "GREEN", "BLUE", "WHITE"]
     #     f.close()
 
 # TEST 2
-for col in colour_basic:
-    print(col)
-    for brightness in range(10):
-        filename = "WATER_" + col + "_" + str((brightness+1)*10) +".csv"
-        print(filename)
-        f = open(filename, "w+")
-        readserial('COM7', 115200, False)
-        f.close()
-        # Make beep sound on Windows
-        winsound.Beep(frequency, duration) 
+# for col in colour_basic:
+#     print(col)
+#     for brightness in range(10):
+#         filename = "WATER_" + col + "_" + str((brightness+1)*10) +".csv"
+#         print(filename)
+#         f = open(filename, "w+")
+#         readserial('COM7', 115200, False)
+#         f.close()
+#         # Make beep sound on Windows
+#         winsound.Beep(frequency, duration) 
 
 # TEST 3
 # for r in range(2):
@@ -81,14 +81,14 @@ for col in colour_basic:
 #     winsound.Beep(frequency, duration)
 
 # TEST 4
-# for brightness in range(1):
-#     filename = "WHITE_100_" + "H6" + ".csv"
-#     print(filename)
-#     f = open(filename, "w+")
-#     readserial('COM7', 115200, False)
-#     f.close()
-#     # Make beep sound on Windows
-#     winsound.Beep(frequency, duration)
+for d in range(6):
+    filename = "WHITE_100_Dist" + str(d) + ".csv"
+    print(filename)
+    f = open(filename, "w+")
+    readserial('COM7', 115200, False)
+    f.close()
+    # Make beep sound on Windows
+    winsound.Beep(frequency, duration)
 
 # readserial('COM7', 115200, False)
 # f.close()
