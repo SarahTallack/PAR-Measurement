@@ -6,7 +6,7 @@ timestamp = time.strftime('%M') + "_AS7341.csv"
 
 
 # Set frequency to 2000 Hertz
-frequency = 2000
+frequency = 1000
 # Set duration to 1500 milliseconds (1.5 seconds)
 duration = 750
 winsound.Beep(frequency, duration)
@@ -82,14 +82,17 @@ colour_basic = ["RED", "GREEN", "BLUE", "WHITE"]
 
 # TEST 4
 for d in range(6):
-    filename = "WHITE_100_Dist" + str(d) + ".csv"
+    filename = "VEML_WHITE_100_Dist" + str(d) + ".csv"
     print(filename)
     f = open(filename, "w+")
-    readserial('COM7', 115200, False)
+    readserial('COM4', 115200, False)
     f.close()
     # Make beep sound on Windows
     winsound.Beep(frequency, duration)
 
+winsound.Beep(frequency, duration)
 # readserial('COM7', 115200, False)
 # f.close()
 print("done")
+
+#COM7 on PC, COM4 on laptop
