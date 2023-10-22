@@ -162,6 +162,7 @@ int main(void)
 //	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 //	  HAL_Delay(100);
 //  }
+  printf("HI");
   while (1)
   {
 	  while (HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET) // Wait while the button is not pressed
@@ -270,7 +271,6 @@ info：		Set the sensing mode, enable or disable interrupts, set integration
 ******************************************************************************/
 void AS7341_Start()
 {
-//	printf("Configuring AS7341");
 	DEV_ModuleInit();
 
 	AS7341_Init(MODE);
@@ -282,71 +282,38 @@ void AS7341_Start()
 	 * max t_int = 50s */
 	switch(t_int)
 	{
-	case 10:
-		ATIME = 29;
-		ASTEP = 119;
-		break;
-	case 20:
-		ATIME = 29;
-		ASTEP = 239;
-		break;
 	case 40:
 		ATIME = 29;
 		ASTEP = 479;
-		break;
-	case 50:
-		ATIME = 29;
-		ASTEP = 599;
 		break;
 	case 80:
 		ATIME = 59;
 		ASTEP = 479;
 		break;
-	case 100:
-		ATIME = 59;
-		ASTEP = 599;
-		break;
 	case 160:
 		ATIME = 59;
 		ASTEP = 958;
-		break;
-	case 200:
-		ATIME = 59;
-		ASTEP = 1198;
 		break;
 	case 320:
 		ATIME = 59;
 		ASTEP = 1917;
 		break;
-	case 500:
-		ATIME = 59;
-		ASTEP = 2997;
-		break;
 	case 640:
 		ATIME = 29;
 		ASTEP = 7673;
-		break;
-	case 1000:
-		ATIME = 39;
-		ASTEP = 8992;
 		break;
 	case 1280:
 		ATIME = 119;
 		ASTEP = 3826;
 		break;
-	case 2000:
-		ATIME = 29;
-		ASTEP = 23980;
-		break;
 	default:
-		ATIME = 29;
+		ATIME = 29; // 50 ms
 		ASTEP = 599;
 		break;
 	}
 
 	AS7341_ATIME_config(ATIME);
 	AS7341_ASTEP_config(ASTEP);
-//	printf("Configuring AS7341 done\r\n ------------------------\r\n");
 }
 
 /******************************************************************************
