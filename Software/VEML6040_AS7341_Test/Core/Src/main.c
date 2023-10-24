@@ -74,7 +74,7 @@ uint32_t lastDebounceTime = 0;
 
 VEML6040_Handle veml6040;
 
-uint32_t t_int = 640;
+uint32_t t_int = 40;
 int i = 0;
 int j = 0;
 
@@ -95,6 +95,7 @@ void VEML6040_Start();
 void AS7341_Start();
 
 void start_meas();
+void data_output();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -154,23 +155,16 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-//  printf("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\r\n");
-//  printf("Time,Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR,VEML_R,VEML_G,VEML_B,VEML_W,t_int\r\n");
-
-//  while (HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET) // Wait while the button is not pressed
-//  {
-//	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-//	  HAL_Delay(100);
-//  }
-  printf("HI");
   while (1)
   {
+	  /*
 	  while (HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET) // Wait while the button is not pressed
 	  {
 		  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		  HAL_Delay(100);
 	  }
-	  start_meas();
+	  start_meas();*/
+	  data_output();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -394,6 +388,22 @@ void start_meas()
 //		j++;
 //	}
 //	HAL_Delay(200);
+}
+
+void data_output()
+{
+	AS7341_startMeasure(eF1F4ClearNIR);
+	data1 = AS7341_ReadSpectralDataOne();
+	printf("%d,%d,%d,%d,", data1.channel1, data1.channel2, data1.channel3, data1.channel4);
+
+	AS7341_startMeasure(eF5F8ClearNIR);
+	data2 =AS7341_ReadSpectralDataTwo();
+	printf("%d,%d,%d,%d,%d,%d,", data2.channel5, data2.channel6, data2.channel7, data2.channel8, data2.CLEAR, data2.NIR);
+
+	VEML_data = VEML_GetData(&hi2c1);
+	printf("%d,%d,%d,%d,%ld\r\n", VEML_data.b, VEML_data.g, VEML_data.r, VEML_data.w, t_int);
+
+	HAL_Delay(100);
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
