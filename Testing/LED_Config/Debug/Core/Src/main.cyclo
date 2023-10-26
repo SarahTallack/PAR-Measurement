@@ -5,7 +5,7 @@
 ../Core/Src/main.c:271:6:LCD_Print	8
 ../Core/Src/main.c:306:6:Set_Brightness	3
 ../Core/Src/main.c:319:6:rainbow	5
-../Core/Src/main.c:352:6:rgb	2
+../Core/Src/main.c:352:6:rgb	3
 ../Core/Src/main.c:397:6:sweep	4
 ../Core/Src/main.c:426:6:WS2812_send	4
 ../Core/Src/main.c:449:6:HAL_GPIO_EXTI_Callback	8

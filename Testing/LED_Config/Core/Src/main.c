@@ -60,7 +60,7 @@ typedef union
 
 #define SWEEP 0
 #define PI 3.14159265
-#define MODE 0 //0 = normal, 1 and 2 for different button functions (single leds)
+#define MODE 2 //0 = normal, 1 and 2 for different button functions (single leds)
 //#define COLOUR 0 //1 (red), 2 (green), 3 (blue), or 4 (white), else 0 (other)
 
 #define R 255

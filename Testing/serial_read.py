@@ -25,7 +25,7 @@ def readserial(comport, baudrate, timestamp=False):
     #     f.write(f'Channel1,Channel2,Channel3,Channel4,Channel5,Channel6,Channel7,Channel8,Clear,NIR\n')
 
     i = 0
-    while i<60:
+    while i<10:
 
         data = ser.readline().decode().strip()
 
@@ -51,8 +51,8 @@ colour_basic = ["RED", "GREEN", "BLUE", "WHITE"]
 # TEST 1
 # for col in colour_basic:
 #     print(col)
-#     for brightness in range(1):
-#         filename = col + "_100_VEML_SINGLE" + ".csv"
+#     for brightness in range(10):
+#         filename = col + "_" + str((brightness+1)*10) + "_VEML_SINGLE" + ".csv"
 #         print(filename)
 #         f = open(filename, "w+")
 #         readserial('COM6', 115200, False)
@@ -60,16 +60,16 @@ colour_basic = ["RED", "GREEN", "BLUE", "WHITE"]
 #         winsound.Beep(frequency, duration)
 
 # TEST 2
-for col in colour_basic:
-    print(col)
-    for brightness in range(10):
-        filename = "PLASTIC_" + col + "_" + str((brightness+1)*10) +".csv"
-        print(filename)
-        f = open(filename, "w+")
-        readserial('COM6', 115200, False)
-        f.close()
-        # Make beep sound on Windows
-        winsound.Beep(frequency, duration) 
+# for col in colour_basic:
+#     print(col)
+#     for brightness in range(10):
+#         filename = "PLASTIC_" + col + "_" + str((brightness+1)*10) +".csv"
+#         print(filename)
+#         f = open(filename, "w+")
+#         readserial('COM6', 115200, False)
+#         f.close()
+#         # Make beep sound on Windows
+#         winsound.Beep(frequency, duration) 
 
 # TEST 3
 # for r in range(2):
@@ -80,6 +80,17 @@ for col in colour_basic:
 #     f.close()
 #     # Make beep sound on Windows
 #     winsound.Beep(frequency, duration)
+
+# TEST 3
+for angle in range(170, 0, -10):
+    print(angle)
+    col = "WHITE"
+    filename = col + "_100_ROTATE_90" + "_VEML_SINGLE_ANGLE_" + str(angle) + ".csv"
+    print(filename)
+    f = open(filename, "w+")
+    readserial('COM6', 115200, False)
+    f.close()
+    winsound.Beep(frequency, duration)
 
 # TEST 4
 # for d in range(6):
