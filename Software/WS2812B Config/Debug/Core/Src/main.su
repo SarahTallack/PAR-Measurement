@@ -1,0 +1,12 @@
+../Core/Src/main.c:113:6:HAL_TIM_PWM_PulseFinishedCallback	16	static
+../Core/Src/main.c:124:1:__io_putchar	16	static
+../Core/Src/main.c:136:5:main	8	static
+../Core/Src/main.c:225:6:SystemClock_Config	96	static
+../Core/Src/main.c:271:6:LCD_Print	16	static
+../Core/Src/main.c:306:6:Set_Brightness	32	static
+../Core/Src/main.c:319:6:rainbow	4	static
+../Core/Src/main.c:352:6:rgb	16	static
+../Core/Src/main.c:397:6:sweep	24	static
+../Core/Src/main.c:426:6:WS2812_send	8	static
+../Core/Src/main.c:449:6:HAL_GPIO_EXTI_Callback	24	static
+../Core/Src/main.c:517:6:Error_Handler	4	static,ignoring_inline_asm
