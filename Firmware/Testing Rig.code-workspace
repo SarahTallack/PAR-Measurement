@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "Testing Rig",
+			"path": "Testing Rig"
+		},
+		{
+			"path": "User Interface"
+		},
+		{
+			"path": "../Software/AS7265x Firmware"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ws2812.h": "c",
+			"stdio.h": "c",
+			"waveshare_as7341.h": "c"
+		}
+	}
+}

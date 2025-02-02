@@ -1,0 +1,17 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+"C1, C3, C5",0402,3,100nF,C307331
+"C2, C4, C6",0402,3,1uF,C52923
+C7,0402,1,1uF,C15849
+D1,0603,1,RED,C2286
+"D2, D3, D4",0603,3,WH,C2290
+"J1, J4",PinHeader_1x04_P2.54mm_Vertical,2,Conn_01x04_Pin,
+J3,PinHeader_1x02_P2.54mm_Vertical,1,Conn_01x02_Pin,
+J5,PinHeader_1x03_P2.54mm_Vertical,1,Conn_01x03_Pin,
+"R1, R11, R2, R3",0402,4,10k,C25744
+"R10, R8, R9",0402,3,220,C25091
+"R4, R5, R6, R7",0402,4,4.7k,C25744
+"TP1, TP2, TP4",TestPoint_Plated_Hole_D2.0mm,3,TestPoint,
+U1,AMS_AS7265x_LGA-20_4.7x4.5mm_P0.65mm,1,AS72651,
+U2,AMS_AS7265x_LGA-20_4.7x4.5mm_P0.65mm,1,AS72652,
+U3,AMS_AS7265x_LGA-20_4.7x4.5mm_P0.65mm,1,AS72653,
+U4,SOP-8_3.9x4.9mm_P1.27mm,1,XT25F04D,C558854

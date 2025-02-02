@@ -1,0 +1,6 @@
+"Reference","Value","Datasheet","Footprint","Qty","DNP"
+"C1,C2","100n","https://datasheet.lcsc.com/lcsc/1809301912_YAGEO-CC0603KRX7R9BB104_C14663.pdf","Capacitor_SMD:C_0603_1608Metric","2",""
+"J1,J2","Conn_01x04_Pin","~","-- mixed values --","2",""
+"R1,R2,R3","4.7k","https://datasheet.lcsc.com/lcsc/2206010230_UNI-ROYAL-Uniroyal-Elec-0603WAF2201T5E_C4190.pdf","Resistor_SMD:R_0603_1608Metric","3",""
+"U1","VEML6040","https://www.vishay.com/docs/84276/veml6040.pdf","Sarah_Footprints:SENSOR_SMD_VEML6040A3OG","1",""
+"U2","TMP117xxDRV","https://www.ti.com/lit/ds/symlink/tmp117.pdf","Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm","1",""
